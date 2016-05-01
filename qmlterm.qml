@@ -44,7 +44,8 @@ ApplicationWindow {
                 console.log(mainsession.currentDir)
 
                 myLauncher.launch('python',[
-                    Utils.url2path(Qt.resolvedUrl('open_terminal_at.py')),
+                    Utils.url2path(Qt.resolvedUrl('open_terminal.py')),
+                    Utils.url2path(Qt.resolvedUrl('run.sh')),
                     mainsession.currentDir,
                 ]);
             }
