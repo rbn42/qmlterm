@@ -31,7 +31,7 @@ ApplicationWindow {
     visible: true
     width: config.window_width
     height: config.window_height
-    title:Utils.subhome("$HOME",mainsession.title )
+    title:mainsession.title
 
     color: 'transparent'
 
@@ -39,10 +39,15 @@ ApplicationWindow {
         MenuItem {
             id:openterminal
             text: qsTr('Open Terminal')
-            onTriggered:myLauncher.launch('python',[
-                Utils.url2path(Qt.resolvedUrl('open_terminal_at.py')),
-                mainsession.title,
-            ]);
+            onTriggered:{
+                console.log(mainsession.foregroundProcessName)
+                console.log(mainsession.currentDir)
+
+                myLauncher.launch('python',[
+                    Utils.url2path(Qt.resolvedUrl('open_terminal_at.py')),
+                    mainsession.currentDir,
+                ]);
+            }
             shortcut:StandardKey.New // "Ctrl+T"
         }
         MenuItem {
@@ -167,6 +172,12 @@ ApplicationWindow {
         color: "black"
         source: terminal
         spread:0.5
+    }
+    onClosing:{
+        console.log('close')
+        if(mainsession.hasActiveProcess){
+            close.accepted=false
+        }
     }
 }
 
