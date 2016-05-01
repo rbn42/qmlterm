@@ -14,7 +14,7 @@ ApplicationWindow {
         property var window_height:480
         property var shadow_radius:5
         property var shadow_offset:1
-        property var display_ratio:1.0
+        property var display_ratio:1.4
         property var font_size:12
         property var font_family:"monaco" /* "Lucida Gr" /*"setofont"*/
         property var color_scheme:"custom" /*( "Transparent" /*cool-retro-term"*/
@@ -130,7 +130,10 @@ ApplicationWindow {
         }
         onTerminalUsesMouseChanged: console.log(terminalUsesMouse);
         onTerminalSizeChanged: console.log(terminalSize);
-        Component.onCompleted: mainsession.startShellProgram();
+        Component.onCompleted:{
+            resize(1.0)
+            mainsession.startShellProgram();
+        }
 
         QMLTermScrollbar {
             terminal: terminal
