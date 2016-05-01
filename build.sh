@@ -1,7 +1,7 @@
 cd ~/git
 git clone https://github.com/rbn42/qmltermwidget.git
-git checkout transparent-background
 cd ~/git/qmltermwidget
+git checkout transparent-background
 mkdir build
 cd build
 qmake ..
