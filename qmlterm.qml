@@ -120,26 +120,7 @@ ApplicationWindow {
         font.family:config.font_family
         font.pointSize: config.font_size
         colorScheme:config.color_scheme
-        session: QMLTermSession{
-            id: mainsession
-            /*historySize*/
-            shellProgram:config.shell
-            //shellProgramArgs:['--rcfile','~/apps/qmlterm/bashrc']
-            /*title*/
-            initialWorkingDirectory: "$PWD"
-            onMatchFound: {
-                console.log("found at: %1 %2 %3 %4".arg(startColumn).arg(startLine).arg(endColumn).arg(endLine));
-            }
-            onNoMatchFound: {
-                console.log("not found");
-            }
-            onTitleChanged:{
-                console.log("title changed");
-            }
-            onFinished:{
-                Qt.quit()
-            }
-        }
+        session:mainsession
         onTerminalUsesMouseChanged: console.log(terminalUsesMouse);
         onTerminalSizeChanged: console.log(terminalSize);
         Component.onCompleted:{
@@ -160,6 +141,26 @@ ApplicationWindow {
 
     }
 
+    QMLTermSession{
+        id: mainsession
+        /*historySize*/
+        shellProgram:config.shell
+        //shellProgramArgs:['--rcfile','~/apps/qmlterm/bashrc']
+        /*title*/
+        initialWorkingDirectory: "$PWD"
+        onMatchFound: {
+            console.log("found at: %1 %2 %3 %4".arg(startColumn).arg(startLine).arg(endColumn).arg(endLine));
+        }
+        onNoMatchFound: {
+            console.log("not found");
+        }
+        onTitleChanged:{
+            console.log("title changed");
+        }
+        onFinished:{
+            Qt.quit()
+        }
+    }
     Button {
         id: searchButton
         text: "Find version"
