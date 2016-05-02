@@ -240,7 +240,7 @@ text:mainsession.title
         anchors.fill: faketitle
      //   radius: 15
         samples: 17
-    //    color: "white"
+        color: "white"
         source: faketitle
         spread:0.8
     }
@@ -249,20 +249,20 @@ text:mainsession.title
         anchors.fill: fakeborder
        // radius: 5
         samples: 17
-       // color: "white"
+        color: "black"
         source: fakeborder
         spread:0.5
 
         states: [
             State {
                 name: "DEACTIVATED"
-                PropertyChanges { target: bordershadow;radius:1;color:'black'}// color:config.unfocused_color }
-                PropertyChanges { target: titleshadow; radius:0;color:config.unfocused_color }
+                PropertyChanges { target: bordershadow;radius:1;}//color:'black'}// color:config.unfocused_color }
+                PropertyChanges { target: titleshadow; radius:1;}//color:config.unfocused_color }
             },
             State {
                 name: "ACTICATED"
-                PropertyChanges { target: bordershadow;radius:5;color:'black'}// color:config.focused_color }
-                PropertyChanges { target: titleshadow;radius:10; color:'white'}//config.focused_color }
+                PropertyChanges { target: bordershadow;radius:5;}//color:'black'}// color:config.focused_color }
+                PropertyChanges { target: titleshadow;radius:10;}// color:'white'}//config.focused_color }
             }
         ]
 
