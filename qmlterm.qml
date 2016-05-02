@@ -159,7 +159,7 @@ border.width: 1
             anchors.fill: parent
 text:mainsession.title
             color: "black"
-            font.pixelSize: 25
+            font.pixelSize: 18
     }
 
     QMLTermWidget {
@@ -167,7 +167,7 @@ text:mainsession.title
         Keys.onPressed:if(event.key==Qt.Key_Menu)contextMenu.popup()
         id: terminal
         anchors.fill: parent
-        anchors.topMargin:30
+        anchors.topMargin:18
         font.family:config.font_family
         font.pointSize: config.font_size
         colorScheme:config.color_scheme
@@ -238,31 +238,31 @@ text:mainsession.title
     DropShadow {
         id:titleshadow
         anchors.fill: faketitle
-        radius: 15
+     //   radius: 15
         samples: 17
-        color: "white"
+    //    color: "white"
         source: faketitle
         spread:0.8
     }
     DropShadow {
         id:bordershadow
         anchors.fill: fakeborder
-        radius: 5
+       // radius: 5
         samples: 17
-        color: "white"
+       // color: "white"
         source: fakeborder
         spread:0.5
 
         states: [
             State {
                 name: "DEACTIVATED"
-                PropertyChanges { target: bordershadow;radius:5; color:config.unfocused_color }
-                PropertyChanges { target: titleshadow; radius:10;color:config.unfocused_color }
+                PropertyChanges { target: bordershadow;radius:1;color:'black'}// color:config.unfocused_color }
+                PropertyChanges { target: titleshadow; radius:0;color:config.unfocused_color }
             },
             State {
                 name: "ACTICATED"
-                PropertyChanges { target: bordershadow;radius:10; color:config.focused_color }
-                PropertyChanges { target: titleshadow;radius:15; color:config.focused_color }
+                PropertyChanges { target: bordershadow;radius:5;color:'black'}// color:config.focused_color }
+                PropertyChanges { target: titleshadow;radius:10; color:'white'}//config.focused_color }
             }
         ]
 
