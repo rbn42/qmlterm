@@ -175,6 +175,9 @@ text:mainsession.title
         session:mainsession
         onTerminalUsesMouseChanged: console.log(terminalUsesMouse);
         onTerminalSizeChanged: console.log(terminalSize);
+        enableBold:true
+        blinkingCursor:true
+        antialiasText:true
         Component.onCompleted:{
             resize(1.0)
             mainsession.startShellProgram();
