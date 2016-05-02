@@ -112,40 +112,41 @@ ApplicationWindow {
     }
 
     color: 'transparent'
-        MouseArea {
-            anchors.fill: parent;
-            property variant clickPos: "1,1"
-            onPressed: {
-                clickPos  = Qt.point(mouse.x,mouse.y)
-            }
-            onPositionChanged: {
-                var delta = Qt.point(mouse.x-clickPos.x, mouse.y-clickPos.y)
-                root.x += delta.x;
-                root.y += delta.y;
-            }
+    MouseArea {
+        anchors.fill: parent;
+        property variant clickPos: "1,1"
+        onPressed: {
+            clickPos  = Qt.point(mouse.x,mouse.y)
         }
+        onPositionChanged: {
+            var delta = Qt.point(mouse.x-clickPos.x, mouse.y-clickPos.y)
+            root.x += delta.x;
+            root.y += delta.y;
+        }
+    }
 
 
-        Rectangle{
-            id:fakeborder
-        anchors.topMargin:-1
-        anchors.rightMargin:-1
-        anchors.leftMargin:-1
-        anchors.bottomMargin:-1
-    border.color: "black"
-    border.width: 1
-                anchors.fill: parent
-                color:'transparent'
+    Rectangle{
+        id:fakeborder
+    anchors.topMargin:-1
+    anchors.rightMargin:-1
+    anchors.leftMargin:-1
+    anchors.bottomMargin:-1
+border.color: "black"
+border.width: 1
+            anchors.fill: parent
+            color:'transparent'
 }
-        Text {
-        id:faketitle
-        font.family:'setofont'
-            horizontalAlignment:Text.AlignHCenter
-                anchors.fill: parent
-    text:mainsession.title
-                color: "black"
-                font.pixelSize: 25
-        }
+    Text {
+    id:faketitle
+    font.family:'setofont'
+        horizontalAlignment:Text.AlignHCenter
+            anchors.fill: parent
+text:mainsession.title
+            color: "black"
+            font.pixelSize: 25
+    }
+
     QMLTermWidget {
 
         Keys.onPressed:if(event.key==Qt.Key_Menu)contextMenu.popup()
