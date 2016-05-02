@@ -20,8 +20,8 @@ ApplicationWindow {
         property var display_ratio:1.0
 
         property var title_font:'setofont'
-        property var focused_color:'white'
-        property var unfocused_color:'#8ff'
+        property var focused_color:'#8ff'
+        property var unfocused_color:'#eee'
 
         property var window_width:960
         property var window_height:480
