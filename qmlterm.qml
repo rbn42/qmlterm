@@ -256,13 +256,13 @@ text:mainsession.title
         states: [
             State {
                 name: "DEACTIVATED"
-                PropertyChanges { target: bordershadow; color:config.unfocused_color }
-                PropertyChanges { target: titleshadow; color:config.unfocused_color }
+                PropertyChanges { target: bordershadow;radius:5; color:config.unfocused_color }
+                PropertyChanges { target: titleshadow; radius:10;color:config.unfocused_color }
             },
             State {
                 name: "ACTICATED"
-                PropertyChanges { target: bordershadow; color:config.focused_color }
-                PropertyChanges { target: titleshadow; color:config.focused_color }
+                PropertyChanges { target: bordershadow;radius:10; color:config.focused_color }
+                PropertyChanges { target: titleshadow;radius:15; color:config.focused_color }
             }
         ]
 
@@ -271,14 +271,20 @@ text:mainsession.title
             Transition {
                 from: "DEACTIVATED"
                 to: "ACTICATED"
-                ColorAnimation { target: bordershadow; duration: 300}
-                ColorAnimation { target: titleshadow; duration: 300}
+                ColorAnimation { target: bordershadow; duration: 500}
+                ColorAnimation { target: titleshadow; duration: 500}
+                NumberAnimation {target:bordershadow;properties: "radius";duration: 500}
+                NumberAnimation {target:titleshadow;properties: "radius";duration: 500}
+    // easing.type: Easing.InOutQuad }
             },
             Transition {
                 from: "ACTICATED"
                 to: "DEACTIVATED"
-                ColorAnimation { target: bordershadow; duration: 100}
-                ColorAnimation { target: titleshadow; duration: 100}
+                ColorAnimation { target: bordershadow; duration: 500}
+                ColorAnimation { target: titleshadow; duration: 500}
+                NumberAnimation {target:bordershadow;properties: "radius";duration: 500}
+                NumberAnimation {target:titleshadow;properties: "radius";duration: 500}
+                // easing.type: Easing.InOutQuad }
             }
         ]
     }
