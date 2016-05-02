@@ -37,11 +37,11 @@ ApplicationWindow {
 
     onActiveChanged:{
         if(active){
-            bordershadow.color='#8ff'
-            titleshadow.color='#8ff'
+            bordershadow.state="ACTICATED"
+           // titleshadow.color='#8ff'
         }else{
-            bordershadow.color='white'
-            titleshadow.color='white'
+            bordershadow.state="DEACTIVATED"
+            //titleshadow.color='white'
         }
     }
     Menu { id: contextMenu
@@ -247,6 +247,35 @@ text:mainsession.title
         color: "white"
         source: fakeborder
         spread:0.5
+
+        states: [
+            State {
+                name: "DEACTIVATED"
+                PropertyChanges { target: bordershadow; color: "white"}
+                PropertyChanges { target: titleshadow; color: "white"}
+            },
+            State {
+                name: "ACTICATED"
+                PropertyChanges { target: bordershadow; color: "#8ff"}
+                PropertyChanges { target: titleshadow; color: "#8ff"}
+            }
+        ]
+
+
+        transitions: [
+            Transition {
+                from: "DEACTIVATED"
+                to: "ACTICATED"
+                ColorAnimation { target: bordershadow; duration: 500}
+                ColorAnimation { target: titleshadow; duration: 500}
+            },
+            Transition {
+                from: "ACTICATED"
+                to: "DEACTIVATED"
+                ColorAnimation { target: bordershadow; duration: 500}
+                ColorAnimation { target: titleshadow; duration: 500}
+            }
+        ]
     }
     onClosing:{
         console.log('close')
@@ -254,5 +283,6 @@ text:mainsession.title
             close.accepted=false
         }
     }
+
 }
 
