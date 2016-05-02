@@ -11,15 +11,22 @@ import "utils.js" as Utils
 ApplicationWindow {
     Item{
         id:config
+
+        property var shell:"fish" 
+        property var font_size:12
+        property var font_family:"monaco" // "Lucida Gr" "setofont"
+        property var color_scheme:"custom" //cool-retro-term
+
+        property var display_ratio:1.0
+
+        property var title_font:'setofont'
+        property var focused_color:'white'
+        property var unfocused_color:'#8ff'
+
         property var window_width:960
         property var window_height:480
         property var shadow_radius:5
         property var shadow_offset:1
-        property var display_ratio:1.0
-        property var font_size:12
-        property var font_family:"monaco" /* "Lucida Gr" /*"setofont"*/
-        property var color_scheme:"custom" /*( "Transparent" /*cool-retro-term"*/
-        property var shell:"fish" 
 
         property var current_window_width
         property var current_window_height
@@ -38,10 +45,8 @@ ApplicationWindow {
     onActiveChanged:{
         if(active){
             bordershadow.state="ACTICATED"
-           // titleshadow.color='#8ff'
         }else{
             bordershadow.state="DEACTIVATED"
-            //titleshadow.color='white'
         }
     }
     Menu { id: contextMenu
@@ -149,7 +154,7 @@ border.width: 1
 }
     Text {
     id:faketitle
-    font.family:'setofont'
+    font.family:config.title_font 
         horizontalAlignment:Text.AlignHCenter
             anchors.fill: parent
 text:mainsession.title
@@ -251,13 +256,13 @@ text:mainsession.title
         states: [
             State {
                 name: "DEACTIVATED"
-                PropertyChanges { target: bordershadow; color: "white"}
-                PropertyChanges { target: titleshadow; color: "white"}
+                PropertyChanges { target: bordershadow; color:config.unfocused_color }
+                PropertyChanges { target: titleshadow; color:config.unfocused_color }
             },
             State {
                 name: "ACTICATED"
-                PropertyChanges { target: bordershadow; color: "#8ff"}
-                PropertyChanges { target: titleshadow; color: "#8ff"}
+                PropertyChanges { target: bordershadow; color:config.focused_color }
+                PropertyChanges { target: titleshadow; color:config.focused_color }
             }
         ]
 
