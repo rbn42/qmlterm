@@ -14,7 +14,7 @@ ApplicationWindow {
         property var window_height:480
         property var shadow_radius:5
         property var shadow_offset:1
-        property var display_ratio:1.4
+        property var display_ratio:1.0
         property var font_size:12
         property var font_family:"monaco" /* "Lucida Gr" /*"setofont"*/
         property var color_scheme:"custom" /*( "Transparent" /*cool-retro-term"*/
@@ -33,7 +33,6 @@ ApplicationWindow {
     height: config.window_height
     title:mainsession.title
 
-    color: 'transparent'
 
     Menu { id: contextMenu
         MenuItem {
@@ -100,9 +99,9 @@ ApplicationWindow {
             config.current_window_width=root.width;
             config.current_window_height=root.height;
         }
-        shadow.horizontalOffset=config.shadow_offset*config.display_ratio;
-        shadow.verticalOffset=config.shadow_offset*config.display_ratio;
-        shadow.radius=config.shadow_radius*config.display_ratio;
+        shadow1.horizontalOffset=config.shadow_offset*config.display_ratio;
+        shadow1.verticalOffset=config.shadow_offset*config.display_ratio;
+        shadow1.radius=config.shadow_radius*config.display_ratio;
     }
 
 
@@ -112,14 +111,51 @@ ApplicationWindow {
         onClicked: contextMenu.popup()  
     }
 
+    color: 'transparent'
+        MouseArea {
+            anchors.fill: parent;
+            property variant clickPos: "1,1"
+            onPressed: {
+                clickPos  = Qt.point(mouse.x,mouse.y)
+            }
+            onPositionChanged: {
+                var delta = Qt.point(mouse.x-clickPos.x, mouse.y-clickPos.y)
+                root.x += delta.x;
+                root.y += delta.y;
+            }
+        }
+
+
+        Rectangle{
+            id:fakeborder
+        anchors.topMargin:-1
+        anchors.rightMargin:-1
+        anchors.leftMargin:-1
+        anchors.bottomMargin:-1
+    border.color: "black"
+    border.width: 1
+                anchors.fill: parent
+                color:'transparent'
+}
+        Text {
+        id:faketitle
+        font.family:'setofont'
+            horizontalAlignment:Text.AlignHCenter
+                anchors.fill: parent
+    text:mainsession.title
+                color: "black"
+                font.pixelSize: 25
+        }
     QMLTermWidget {
 
         Keys.onPressed:if(event.key==Qt.Key_Menu)contextMenu.popup()
         id: terminal
         anchors.fill: parent
+        anchors.topMargin:30
         font.family:config.font_family
         font.pointSize: config.font_size
         colorScheme:config.color_scheme
+        //colorScheme:'BlackOnWhite'
         session:mainsession
         onTerminalUsesMouseChanged: console.log(terminalUsesMouse);
         onTerminalSizeChanged: console.log(terminalSize);
@@ -140,6 +176,8 @@ ApplicationWindow {
         }
 
     }
+
+
 
     QMLTermSession{
         id: mainsession
@@ -171,7 +209,7 @@ ApplicationWindow {
     }
     Component.onCompleted: terminal.forceActiveFocus();
     DropShadow {
-        id:shadow
+        id:shadow1
         anchors.fill: terminal
         horizontalOffset: config.shadow_offset
         verticalOffset: config.shadow_offset
@@ -179,6 +217,24 @@ ApplicationWindow {
         samples: 17
         color: "black"
         source: terminal
+        spread:0.5
+    }
+    DropShadow {
+        id:shadow2
+        anchors.fill: faketitle
+        radius: 15
+        samples: 17
+        color: "white"
+        source: faketitle
+        spread:0.8
+    }
+    DropShadow {
+        id:shadow3
+        anchors.fill: fakeborder
+        radius: 5
+        samples: 17
+        color: "white"
+        source: fakeborder
         spread:0.5
     }
     onClosing:{
