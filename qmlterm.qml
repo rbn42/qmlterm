@@ -273,8 +273,8 @@ text:mainsession.title
                 to: "ACTICATED"
                 ColorAnimation { target: bordershadow; duration: 500}
                 ColorAnimation { target: titleshadow; duration: 500}
-                NumberAnimation {target:bordershadow;properties: "radius";duration: 500}
-                NumberAnimation {target:titleshadow;properties: "radius";duration: 500}
+                NumberAnimation {target:bordershadow;properties: "radius";duration: 300}
+                NumberAnimation {target:titleshadow;properties: "radius";duration: 300}
     // easing.type: Easing.InOutQuad }
             },
             Transition {
@@ -282,8 +282,8 @@ text:mainsession.title
                 to: "DEACTIVATED"
                 ColorAnimation { target: bordershadow; duration: 500}
                 ColorAnimation { target: titleshadow; duration: 500}
-                NumberAnimation {target:bordershadow;properties: "radius";duration: 500}
-                NumberAnimation {target:titleshadow;properties: "radius";duration: 500}
+                NumberAnimation {target:bordershadow;properties: "radius";duration: 300}
+                NumberAnimation {target:titleshadow;properties: "radius";duration: 300}
                 // easing.type: Easing.InOutQuad }
             }
         ]
