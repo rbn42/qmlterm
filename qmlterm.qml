@@ -5,6 +5,7 @@ import QtQuick.Controls 1.1
 import QtQuick.Controls.Styles 1.0
 import QtGraphicalEffects 1.0
 
+
 import "utils.js" as Utils
 
 ApplicationWindow {
@@ -34,6 +35,15 @@ ApplicationWindow {
     title:mainsession.title
 
 
+    onActiveChanged:{
+        if(active){
+            bordershadow.color='#8ff'
+            titleshadow.color='#8ff'
+        }else{
+            bordershadow.color='white'
+            titleshadow.color='white'
+        }
+    }
     Menu { id: contextMenu
         MenuItem {
             id:openterminal
@@ -221,7 +231,7 @@ text:mainsession.title
         spread:0.5
     }
     DropShadow {
-        id:shadow2
+        id:titleshadow
         anchors.fill: faketitle
         radius: 15
         samples: 17
@@ -230,7 +240,7 @@ text:mainsession.title
         spread:0.8
     }
     DropShadow {
-        id:shadow3
+        id:bordershadow
         anchors.fill: fakeborder
         radius: 5
         samples: 17
