@@ -266,14 +266,14 @@ text:mainsession.title
             Transition {
                 from: "DEACTIVATED"
                 to: "ACTICATED"
-                ColorAnimation { target: bordershadow; duration: 500}
-                ColorAnimation { target: titleshadow; duration: 500}
+                ColorAnimation { target: bordershadow; duration: 300}
+                ColorAnimation { target: titleshadow; duration: 300}
             },
             Transition {
                 from: "ACTICATED"
                 to: "DEACTIVATED"
-                ColorAnimation { target: bordershadow; duration: 500}
-                ColorAnimation { target: titleshadow; duration: 500}
+                ColorAnimation { target: bordershadow; duration: 100}
+                ColorAnimation { target: titleshadow; duration: 100}
             }
         ]
     }
