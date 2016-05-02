@@ -133,6 +133,12 @@ ApplicationWindow {
             onNoMatchFound: {
                 console.log("not found");
             }
+            onTitleChanged:{
+                console.log("title changed");
+            }
+            onFinished:{
+                Qt.quit()
+            }
         }
         onTerminalUsesMouseChanged: console.log(terminalUsesMouse);
         onTerminalSizeChanged: console.log(terminalSize);
