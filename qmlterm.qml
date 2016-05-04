@@ -138,6 +138,15 @@ ApplicationWindow {
             root.x += delta.x;
             root.y += delta.y;
         }
+        onDoubleClicked:{
+            console.log(root.visibility)
+            if(root.visibility==4)// "Maximized")
+                root.visibility='AutomaticVisibility'
+            else
+                root.visibility= "Maximized"
+        }
+
+
     }
 
 
