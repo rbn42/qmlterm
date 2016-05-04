@@ -12,4 +12,4 @@ logging.info(sys.argv)
 terminal, path = sys.argv[1:]
 if len(path) > 1:
     os.chdir(path)
-os.system(terminal)
+os.system(terminal + ' &')
