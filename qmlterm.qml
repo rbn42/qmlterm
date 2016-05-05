@@ -149,26 +149,26 @@ ApplicationWindow {
 
     }
 
-
     Rectangle{
         id:fakeborder
-    anchors.topMargin:-1
-    anchors.rightMargin:-1
-    anchors.leftMargin:-1
-    anchors.bottomMargin:-1
-border.color: "black"
-border.width: 1
-            anchors.fill: parent
-            color:'transparent'
-}
+        anchors.topMargin:-1
+        anchors.rightMargin:-1
+        anchors.leftMargin:-1
+        anchors.bottomMargin:-1
+        border.color: "black"
+        border.width: 1
+        anchors.fill: parent
+        color:'transparent'
+    }
+
     Text {
-    id:faketitle
-    font.family:config.title_font 
+        id:faketitle
+        font.family:config.title_font 
         horizontalAlignment:Text.AlignHCenter
-            anchors.fill: parent
-text:mainsession.title
-            color: "black"
-            font.pixelSize: 18
+        anchors.fill: parent
+        text:mainsession.title
+        color: "black"
+        font.pixelSize: 18
     }
 
     QMLTermWidget {
@@ -269,7 +269,7 @@ text:mainsession.title
             State {
                 name: "DEACTIVATED"
                 PropertyChanges { target: bordershadow;radius:1;}//color:'black'}// color:config.unfocused_color }
-                PropertyChanges { target: titleshadow; radius:1;}//color:config.unfocused_color }
+                PropertyChanges { target: titleshadow; radius:3;}//color:config.unfocused_color }
             },
             State {
                 name: "ACTICATED"
