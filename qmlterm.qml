@@ -17,7 +17,7 @@ ApplicationWindow {
         property var font_family:"monaco" // "Lucida Gr" "setofont"
         property var color_scheme:"custom" //cool-retro-term
 
-        property var display_ratio:1.2
+        property var display_ratio:1.4
 
         property var title_font:'setofont'
         property var focused_color:'#8ff'
