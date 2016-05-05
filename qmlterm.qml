@@ -100,9 +100,9 @@ ApplicationWindow {
             config.current_window_width=root.width;
             config.current_window_height=root.height;
         }
-        shadow.horizontalOffset=config.shadow_offset*config.display_ratio;
-        shadow.verticalOffset=config.shadow_offset*config.display_ratio;
-        shadow.radius=config.shadow_radius*config.display_ratio;
+        terminalshadow.horizontalOffset=config.shadow_offset*config.display_ratio;
+        terminalshadow.verticalOffset=config.shadow_offset*config.display_ratio;
+        terminalshadow.radius=config.shadow_radius*config.display_ratio;
     }
 
 
@@ -174,7 +174,7 @@ ApplicationWindow {
     }
     Component.onCompleted: terminal.forceActiveFocus();
     DropShadow {
-        id:shadow
+        id:terminalshadow
         anchors.fill: terminal
         horizontalOffset: config.shadow_offset
         verticalOffset: config.shadow_offset
