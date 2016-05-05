@@ -38,7 +38,7 @@ ApplicationWindow {
     Menu { id: contextMenu
         MenuItem {
             id:openterminal
-            text: qsTr('Open Terminal')
+            text: qsTr('&Open Terminal')
             onTriggered:{
                 console.log(mainsession.foregroundProcessName)
                 console.log(mainsession.currentDir)
