@@ -49,7 +49,7 @@ ApplicationWindow {
                     mainsession.currentDir,
                 ]);
             }
-            shortcut:StandardKey.New // "Ctrl+T"
+            //shortcut:StandardKey.New // "Ctrl+T"
         }
         MenuItem {
             text: qsTr('Copy')
