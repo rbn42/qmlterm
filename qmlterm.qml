@@ -73,6 +73,10 @@ ApplicationWindow {
             shortcut:StandardKey.ZoomOut// "Ctrl+-"
             onTriggered:                resize(0.9);
         }
+        MenuItem {
+            text: qsTr("&Quit")
+            onTriggered:root.close() //Qt.quit() 
+        }
     }
 
     Action{
