@@ -8,22 +8,10 @@ import QtGraphicalEffects 1.0
 import "utils.js" as Utils
 
 ApplicationWindow {
-    Item{
-        id:config
-        property var window_width:960
-        property var window_height:480
-        property var shadow_radius:5
-        property var shadow_offset:1
-        property var display_ratio:1.4
-        property var font_size:12
-        property var font_family:"monaco" /* "Lucida Gr" /*"setofont"*/
-        property var color_scheme:"custom" /*( "Transparent" /*cool-retro-term"*/
-        property var shell:"fish" 
 
-        property var current_window_width
-        property var current_window_height
-    }
-
+    property var current_window_width
+    property var current_window_height
+    Configuration{id:config}
     Launcher { id: myLauncher }
 
     id:root
@@ -86,12 +74,12 @@ ApplicationWindow {
 
     function resize(ratio){
         var resize_window=false;
-        if(!config.current_window_width){
-            config.current_window_width=config.window_width;
-            config.current_window_height=config.window_height;
+        if(!current_window_width){
+            current_window_width=config.window_width;
+            current_window_height=config.window_height;
         }
-        if(root.width==config.current_window_width)
-            if(root.height==config.current_window_height)
+        if(root.width==current_window_width)
+            if(root.height==current_window_height)
                 resize_window=true;
 
         config.display_ratio*=ratio;
@@ -101,8 +89,8 @@ ApplicationWindow {
         if(resize_window){
             root.width=config.window_width*config.display_ratio;
             root.height=config.window_height*config.display_ratio;
-            config.current_window_width=root.width;
-            config.current_window_height=root.height;
+            current_window_width=root.width;
+            current_window_height=root.height;
         }
         terminalshadow.horizontalOffset=config.shadow_offset*config.display_ratio;
         terminalshadow.verticalOffset=config.shadow_offset*config.display_ratio;
