@@ -1,4 +1,3 @@
-import QMLProcess 1.0
 import QtQuick 2.2
 import QMLTermWidget 1.0
 import QtQuick.Controls 1.1
@@ -10,26 +9,14 @@ import "utils.js" as Utils
 ApplicationWindow {
 
     property string initialWorkingDirectory
+
     property var current_window_width
     property var current_window_height
-    Item{
-        id:config
-        property var window_width:960
-        property var window_height:480
-        property var shadow_radius:5
-        property var shadow_offset:1
-        property var display_ratio:1.4
-        property var font_size:12
-        property var font_family:"monaco" /* "Lucida Gr" /*"setofont"*/
-        property var color_scheme:"custom" /*( "Transparent" /*cool-retro-term"*/
-        property var shell:"fish" 
-
-    }
 
     signal newWindow(string path)
     signal finished()
 
-    Launcher { id: myLauncher }
+    Configuration{id:config}
 
     id:root
 
