@@ -68,28 +68,37 @@ ApplicationWindow {
         MenuItem {
             text: qsTr('Copy')
             onTriggered: terminal.copyClipboard();
-            //shortcut:StandardKey.Copy  // "Ctrl+Shift+C"
+            //shortcut:StandardKey.Copy 
             shortcut: "Ctrl+Shift+C"
         }
         MenuItem {
             text: qsTr('Paste')
             onTriggered: terminal.pasteClipboard();
-            //shortcut:StandardKey.Paste // "Ctrl+Shift+V"
+            //shortcut:StandardKey.Paste 
             shortcut: "Ctrl+Shift+V"
         }
         MenuItem {
             text: qsTr("Zoom In")
-            shortcut: StandardKey.ZoomIn// "Ctrl++"
-            onTriggered:        resize(1.1)
+            shortcut: StandardKey.ZoomIn
+            onTriggered:resize(1.1)
         }
         MenuItem {
             text: qsTr("Zoom Out")
-            shortcut:StandardKey.ZoomOut// "Ctrl+-"
-            onTriggered:                resize(0.9);
+            shortcut:StandardKey.ZoomOut
+            onTriggered:resize(0.9);
+        }
+
+        MenuItem {
+            text: qsTr("&Maximize")
+            onTriggered:toggleMaximize()  
+        }
+        MenuItem {
+            text: qsTr("Mi&nimize")
+            onTriggered:root.visibility= "Minimized"
         }
         MenuItem {
             text: qsTr("&Quit")
-            onTriggered:root.close() //Qt.quit() 
+            onTriggered:root.close() 
         }
     }
 
@@ -122,6 +131,13 @@ ApplicationWindow {
         terminalshadow.verticalOffset=config.shadow_offset*config.display_ratio;
         terminalshadow.radius=config.shadow_radius*config.display_ratio;
     }
+    function toggleMaximize(){
+            console.log(root.visibility)
+            if(root.visibility==4)// "Maximized")
+                root.visibility='AutomaticVisibility'
+            else
+                root.visibility= "Maximized"
+    }
 
 
     MouseArea {
@@ -142,13 +158,8 @@ ApplicationWindow {
             root.x += delta.x;
             root.y += delta.y;
         }
-        onDoubleClicked:{
-            console.log(root.visibility)
-            if(root.visibility==4)// "Maximized")
-                root.visibility='AutomaticVisibility'
-            else
-                root.visibility= "Maximized"
-        }
+        onDoubleClicked:toggleMaximize()
+        
 
 
     }
@@ -206,10 +217,7 @@ ApplicationWindow {
                 anchors.fill: parent
             }
         }
-
     }
-
-
 
     QMLTermSession{
         id: mainsession
@@ -282,7 +290,6 @@ ApplicationWindow {
             }
         ]
 
-
         transitions: [
             Transition {
                 from: "DEACTIVATED"
@@ -304,12 +311,12 @@ ApplicationWindow {
             }
         ]
     }
+
     onClosing:{
         console.log('close')
         if(mainsession.hasActiveProcess){
             close.accepted=false
         }
     }
-
+    
 }
-
