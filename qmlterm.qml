@@ -261,12 +261,12 @@ ApplicationWindow {
         states: [
             State {
                 name: "DEACTIVATED"
-                PropertyChanges { target: bordershadow;radius:1;}//color:'black'}// color:config.unfocused_color }
+                PropertyChanges { target: bordershadow;radius:0;}//color:'black'}// color:config.unfocused_color }
                 PropertyChanges { target: titleshadow; radius:3;}//color:config.unfocused_color }
             },
             State {
                 name: "ACTICATED"
-                PropertyChanges { target: bordershadow;radius:5;}//color:'black'}// color:config.focused_color }
+                PropertyChanges { target: bordershadow;radius:0;}//color:'black'}// color:config.focused_color }
                 PropertyChanges { target: titleshadow;radius:10;}// color:'white'}//config.focused_color }
             }
         ]
