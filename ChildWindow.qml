@@ -8,23 +8,28 @@ import QtGraphicalEffects 1.0
 import "utils.js" as Utils
 
 ApplicationWindow {
-//    Item{
-//        id:config
-//        property var window_width:960
-//        property var window_height:480
-//        property var shadow_radius:5
-//        property var shadow_offset:1
-//        property var display_ratio:1.4
-//        property var font_size:12
-//        property var font_family:"monaco" /* "Lucida Gr" /*"setofont"*/
-//        property var color_scheme:"custom" /*( "Transparent" /*cool-retro-term"*/
-//        property var shell:"fish" 
-//
-//    }
-    Configuration{id:config}
-    Launcher { id: myLauncher }
+
+    property string initialWorkingDirectory
     property var current_window_width
     property var current_window_height
+    Item{
+        id:config
+        property var window_width:960
+        property var window_height:480
+        property var shadow_radius:5
+        property var shadow_offset:1
+        property var display_ratio:1.4
+        property var font_size:12
+        property var font_family:"monaco" /* "Lucida Gr" /*"setofont"*/
+        property var color_scheme:"custom" /*( "Transparent" /*cool-retro-term"*/
+        property var shell:"fish" 
+
+    }
+
+    signal newWindow(string path)
+    signal finished()
+
+    Launcher { id: myLauncher }
 
     id:root
 
@@ -35,36 +40,23 @@ ApplicationWindow {
 
     color: 'transparent'
 
-    function onChildFinished(){
-        console.log('child close')
-    }
-    function onChildNewWindow(path){
-        console.log('child open new')
-        newWindow(path)
-    }
-    function newWindow(path){
-        console.log(path)
-        var qml_path=Qt.resolvedUrl('ChildWindow.qml')
-        var component = Qt.createComponent(qml_path)
-        var win = component.createObject(root,{'initialWorkingDirectory':path});
-        win.finished.connect(onChildFinished)
-        win.newWindow.connect(onChildNewWindow)
-        win.show();
-    }
-    Menu { id: contextMenu
+    Menu { 
+        id: contextMenu
         MenuItem {
             id:openterminal
             text: qsTr('&Open Terminal')
-            onTriggered:newWindow(mainsession.currentDir)
+            onTriggered:root.newWindow(mainsession.currentDir)
         }
         MenuItem {
             text: qsTr('Copy')
             onTriggered: terminal.copyClipboard();
+            //shortcut:StandardKey.Copy  // "Ctrl+Shift+C"
             shortcut: "Ctrl+Shift+C"
         }
         MenuItem {
             text: qsTr('Paste')
             onTriggered: terminal.pasteClipboard();
+            //shortcut:StandardKey.Paste // "Ctrl+Shift+V"
             shortcut: "Ctrl+Shift+V"
         }
         MenuItem {
@@ -79,7 +71,7 @@ ApplicationWindow {
         }
         MenuItem {
             text: qsTr("&Quit")
-            onTriggered:root.close() //Qt.quit() 
+            onTriggered:root.close()  
         }
     }
 
@@ -158,7 +150,7 @@ ApplicationWindow {
         shellProgram:config.shell
         //shellProgramArgs:['--rcfile','~/apps/qmlterm/bashrc']
         /*title*/
-        initialWorkingDirectory: "$PWD"
+        initialWorkingDirectory:initialWorkingDirectory 
         onMatchFound: {
             console.log("found at: %1 %2 %3 %4".arg(startColumn).arg(startLine).arg(endColumn).arg(endLine));
         }
@@ -168,9 +160,7 @@ ApplicationWindow {
         onTitleChanged:{
             console.log("title changed");
         }
-        onFinished:{
-            Qt.quit()
-        }
+        onFinished:root.close() 
     }
     Button {
         id: searchButton
@@ -193,9 +183,12 @@ ApplicationWindow {
         spread:0.5
     }
     onClosing:{
+        console.log(initialWorkingDirectory)
         console.log('close')
         if(mainsession.hasActiveProcess){
             close.accepted=false
+        }else{
+            root.finished()
         }
     }
 }
