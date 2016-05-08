@@ -84,7 +84,7 @@ ApplicationWindow {
 
         config.display_ratio*=ratio;
 
-        terminal.font.pointSize=config.font_size*config.display_ratio;
+        terminal.font.pointSize=Math.round(config.font_size*config.display_ratio);
         // Do not resize windows that have been resized manually.
         if(resize_window){
             root.width=config.window_width*config.display_ratio;
@@ -92,9 +92,9 @@ ApplicationWindow {
             current_window_width=root.width;
             current_window_height=root.height;
         }
-        terminalshadow.horizontalOffset=config.shadow_offset*config.display_ratio;
-        terminalshadow.verticalOffset=config.shadow_offset*config.display_ratio;
-        terminalshadow.radius=config.shadow_radius*config.display_ratio;
+        terminalshadow.horizontalOffset=Math.round(config.shadow_offset*config.display_ratio)
+        terminalshadow.verticalOffset=Math.round(config.shadow_offset*config.display_ratio)
+        terminalshadow.radius=Math.round(config.shadow_radius*config.display_ratio)
     }
 
 
