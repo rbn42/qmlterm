@@ -15,6 +15,8 @@ ApplicationWindow {
     Launcher { id: myLauncher }
 
     id:root
+    x:100
+    y:100
 
     visible: true
     width: config.window_width
