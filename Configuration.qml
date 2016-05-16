@@ -3,7 +3,7 @@ import QtQuick 2.2
 Item{
     property var shell:"fish" 
     property var font_size:12
-    property var font_family:"monaco,Droid Sans Mono for Powerline,everson mono,WenQuanYi Micro Hei,setofont"   // "Lucida Gr" 
+    property var font_family:"monacobsemi,Droid Sans Mono for Powerline,everson mono,WenQuanYi Micro Hei,setofont"   // "Lucida Gr" 
     property var color_scheme:"custom" //cool-retro-term
 
     property var display_ratio:1.0
