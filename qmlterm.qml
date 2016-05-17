@@ -22,14 +22,23 @@ ApplicationWindow {
     height: config.window_height
     title:mainsession.title
 
-
-    onActiveChanged:{
-        if(active){
+    function borderstate(_active,_visibility){
+        if(_visibility==4){// "Maximized")
+            bordershadow.state="MAXIMIZED"
+        }else if(_active){
             bordershadow.state="ACTICATED"
         }else{
             bordershadow.state="DEACTIVATED"
         }
     }
+
+    onActiveChanged:{
+        borderstate(active,root.visibility)
+    }
+    onVisibilityChanged:{
+        borderstate(active,visibility)
+    }
+
     Menu { id: contextMenu
         MenuItem {
             id:openterminal
@@ -242,8 +251,7 @@ ApplicationWindow {
     }
     DropShadow {
         id:titleshadow
-        anchors.fill: faketitle
-     //   radius: 15
+        anchors.fill: faketitle //   radius: 15
         samples: 17
         color: "white"
         source: faketitle
@@ -261,13 +269,25 @@ ApplicationWindow {
         states: [
             State {
                 name: "DEACTIVATED"
-                PropertyChanges { target: bordershadow;radius:1;}//color:'black'}// color:config.unfocused_color }
-                PropertyChanges { target: titleshadow; radius:3;}//color:config.unfocused_color }
+                PropertyChanges {target:fakeborder.border;width:1;}
+                PropertyChanges { target: bordershadow;radius:1;}
+                PropertyChanges {target:faketitle;color:'black';}
+                PropertyChanges { target: titleshadow; radius:3;}
+                PropertyChanges {target:terminal.anchors;topMargin:18;}
             },
             State {
                 name: "ACTICATED"
-                PropertyChanges { target: bordershadow;radius:5;}//color:'black'}// color:config.focused_color }
-                PropertyChanges { target: titleshadow;radius:10;}// color:'white'}//config.focused_color }
+                PropertyChanges {target:fakeborder.border;width:1;}
+                PropertyChanges { target: bordershadow;radius:5;}
+                PropertyChanges {target:faketitle;color:'black';}
+                PropertyChanges { target: titleshadow;radius:10;}
+                PropertyChanges {target:terminal.anchors;topMargin:18;}
+            },
+            State {
+                name: "MAXIMIZED"
+                PropertyChanges {target:fakeborder.border;width:0;}
+                PropertyChanges {target:faketitle;color:'transparent';}
+                PropertyChanges {target:terminal.anchors;topMargin:0;}
             }
         ]
 
