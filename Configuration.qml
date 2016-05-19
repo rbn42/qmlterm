@@ -8,7 +8,7 @@ Item{
 
     property var display_ratio:1.0
 
-    property var title_font:'setofont'
+    property var title_font:'setofont,WenQuanYi Micro Hei'
     property var focused_color:'#8ff'
     property var unfocused_color:'#eee'
 
