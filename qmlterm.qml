@@ -40,19 +40,19 @@ ApplicationWindow {
             //shortcut:StandardKey.New // "Ctrl+T"
         }
         MenuItem {
-            text: qsTr('Copy')
+            text: qsTr('&Copy')
             onTriggered: terminal.copyClipboard();
             //shortcut:StandardKey.Copy  // "Ctrl+Shift+C"
             shortcut: "Ctrl+Shift+C"
         }
         MenuItem {
-            text: qsTr('Paste')
+            text: qsTr('&Paste')
             onTriggered: terminal.pasteClipboard();
             //shortcut:StandardKey.Paste // "Ctrl+Shift+V"
             shortcut: "Ctrl+Shift+V"
         }
         MenuItem {
-            text: qsTr("Zoom In")
+            text: qsTr("Zoom &In")
             shortcut: StandardKey.ZoomIn// "Ctrl++"
             onTriggered:        resize(1.1)
         }
