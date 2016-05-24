@@ -16,4 +16,5 @@ Item{
     property var window_height:480
     property var shadow_radius:5
     property var shadow_offset:1
+    property var animation_duration:300
 }

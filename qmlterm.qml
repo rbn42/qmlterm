@@ -295,19 +295,37 @@ ApplicationWindow {
             Transition {
                 from: "DEACTIVATED"
                 to: "ACTICATED"
-                ColorAnimation { target: bordershadow; duration: 500}
-                ColorAnimation { target: titleshadow; duration: 500}
-                NumberAnimation {target:bordershadow;properties: "radius";duration: 300}
-                NumberAnimation {target:titleshadow;properties: "radius";duration: 300}
+                ColorAnimation { target: bordershadow; 
+                    duration: config.animation_duration
+                }
+                ColorAnimation { target: titleshadow; 
+                    duration: config.animation_duration 
+                }
+                NumberAnimation {target:bordershadow;
+                    properties: "radius";
+                    duration:config.animation_duration 
+                }
+                NumberAnimation {target:titleshadow;
+                    properties: "radius";
+                    duration:config.animation_duration 
+                }
     // easing.type: Easing.InOutQuad }
             },
             Transition {
                 from: "ACTICATED"
                 to: "DEACTIVATED"
-                ColorAnimation { target: bordershadow; duration: 500}
-                ColorAnimation { target: titleshadow; duration: 500}
-                NumberAnimation {target:bordershadow;properties: "radius";duration: 300}
-                NumberAnimation {target:titleshadow;properties: "radius";duration: 300}
+                ColorAnimation { target: bordershadow; 
+                    duration:config.animation_duration
+                }
+                ColorAnimation { target: titleshadow; 
+                    duration:config.animation_duration 
+                }
+                NumberAnimation {target:bordershadow;
+                    properties: "radius";duration: config.animation_duration
+                }
+                NumberAnimation {target:titleshadow;
+                    properties: "radius";duration: config.animation_duration
+                }
                 // easing.type: Easing.InOutQuad }
             }
         ]
