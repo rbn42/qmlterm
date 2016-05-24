@@ -56,26 +56,26 @@ ApplicationWindow {
             //shortcut:StandardKey.New // "Ctrl+T"
         }
         MenuItem {
-            text: qsTr('Copy')
+            text: qsTr('&Copy')
             onTriggered: terminal.copyClipboard();
-            //shortcut:StandardKey.Copy 
+            //shortcut:StandardKey.Copy  // "Ctrl+C"
             shortcut: "Ctrl+Shift+C"
         }
         MenuItem {
-            text: qsTr('Paste')
+            text: qsTr('&Paste')
             onTriggered: terminal.pasteClipboard();
-            //shortcut:StandardKey.Paste 
+            //shortcut:StandardKey.Paste // "Ctrl+V"
             shortcut: "Ctrl+Shift+V"
         }
         MenuItem {
-            text: qsTr("Zoom In")
-            shortcut: StandardKey.ZoomIn
-            onTriggered:resize(1.1)
+            text: qsTr("Zoom &In")
+            shortcut: StandardKey.ZoomIn // "Ctrl++"
+            onTriggered: resize(1.1)
         }
         MenuItem {
             text: qsTr("Zoom Out")
-            shortcut:StandardKey.ZoomOut
-            onTriggered:resize(0.9);
+            shortcut: StandardKey.ZoomOut // "Ctrl+-"
+            onTriggered: resize(0.9);
         }
 
         MenuItem {
@@ -295,19 +295,37 @@ ApplicationWindow {
             Transition {
                 from: "DEACTIVATED"
                 to: "ACTICATED"
-                ColorAnimation { target: bordershadow; duration: 500}
-                ColorAnimation { target: titleshadow; duration: 500}
-                NumberAnimation {target:bordershadow;properties: "radius";duration: 300}
-                NumberAnimation {target:titleshadow;properties: "radius";duration: 300}
+                ColorAnimation { target: bordershadow; 
+                    duration: config.animation_duration
+                }
+                ColorAnimation { target: titleshadow; 
+                    duration: config.animation_duration 
+                }
+                NumberAnimation {target:bordershadow;
+                    properties: "radius";
+                    duration:config.animation_duration 
+                }
+                NumberAnimation {target:titleshadow;
+                    properties: "radius";
+                    duration:config.animation_duration 
+                }
     // easing.type: Easing.InOutQuad }
             },
             Transition {
                 from: "ACTICATED"
                 to: "DEACTIVATED"
-                ColorAnimation { target: bordershadow; duration: 500}
-                ColorAnimation { target: titleshadow; duration: 500}
-                NumberAnimation {target:bordershadow;properties: "radius";duration: 300}
-                NumberAnimation {target:titleshadow;properties: "radius";duration: 300}
+                ColorAnimation { target: bordershadow; 
+                    duration:config.animation_duration
+                }
+                ColorAnimation { target: titleshadow; 
+                    duration:config.animation_duration 
+                }
+                NumberAnimation {target:bordershadow;
+                    properties: "radius";duration: config.animation_duration
+                }
+                NumberAnimation {target:titleshadow;
+                    properties: "radius";duration: config.animation_duration
+                }
                 // easing.type: Easing.InOutQuad }
             }
         ]
