@@ -5,7 +5,7 @@ import sys
 import os.path
 import logging
 logging.basicConfig(level=logging.DEBUG,
-                    filename='/dev/shm/open_terminal.log',
+                    filename='/tmp/qmlterm_open_terminal.log',
                     filemode='a')
 logging.info(sys.argv)
 
