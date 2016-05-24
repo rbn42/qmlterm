@@ -56,21 +56,21 @@ ApplicationWindow {
             //shortcut:StandardKey.New // "Ctrl+T"
         }
         MenuItem {
-            text: qsTr('Copy')
+            text: qsTr('&Copy')
             onTriggered: terminal.copyClipboard();
             //shortcut:StandardKey.Copy 
             shortcut: "Ctrl+Shift+C"
         }
         MenuItem {
-            text: qsTr('Paste')
+            text: qsTr('&Paste')
             onTriggered: terminal.pasteClipboard();
             //shortcut:StandardKey.Paste 
             shortcut: "Ctrl+Shift+V"
         }
         MenuItem {
-            text: qsTr("Zoom In")
-            shortcut: StandardKey.ZoomIn
-            onTriggered:resize(1.1)
+            text: qsTr("Zoom &In")
+            shortcut: StandardKey.ZoomIn// "Ctrl++"
+            onTriggered:        resize(1.1)
         }
         MenuItem {
             text: qsTr("Zoom Out")
