@@ -3,12 +3,12 @@ import QtQuick 2.2
 Item{
     property var shell:"fish" 
     property var font_size:12
-    property var font_family:"monaco" // "Lucida Gr" "setofont"
+    property var font_family:"monacobsemi,Droid Sans Mono for Powerline,everson mono,WenQuanYi Micro Hei,setofont"   // "Lucida Gr" 
     property var color_scheme:"custom" //cool-retro-term
 
-    property var display_ratio:1.4
+    property var display_ratio:1.0
 
-    property var title_font:'setofont'
+    property var title_font:'setofont,WenQuanYi Micro Hei'
     property var focused_color:'#8ff'
     property var unfocused_color:'#eee'
 
