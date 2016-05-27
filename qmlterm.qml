@@ -39,7 +39,8 @@ ApplicationWindow {
         borderstate(active,visibility)
     }
 
-    Menu { id: contextMenu
+    Menu { 
+        id: contextMenu
         MenuItem {
             id:openterminal
             text: qsTr('&Open Terminal')
@@ -129,8 +130,8 @@ ApplicationWindow {
                 root.visibility= "Maximized"
     }
     function setTitle(title){
-        root.title=title
-        faketitle.text=title
+        //root.title=title
+        //faketitle.text=title
     }
 
 
