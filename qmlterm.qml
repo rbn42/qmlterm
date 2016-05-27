@@ -128,6 +128,10 @@ ApplicationWindow {
             else
                 root.visibility= "Maximized"
     }
+    function setTitle(title){
+        root.title=title
+        faketitle.text=title
+    }
 
 
     MouseArea {
@@ -210,6 +214,7 @@ ApplicationWindow {
             if (args.length>0){
                 args=args.join(' ')
                 console.log(args);
+                setTitle(args)
                 mainsession.shellProgramArgs=['-c',args]
             }
 
