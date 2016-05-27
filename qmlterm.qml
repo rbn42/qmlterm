@@ -96,6 +96,9 @@ ApplicationWindow {
         terminalshadow.verticalOffset=Math.round(config.shadow_offset*config.display_ratio)
         terminalshadow.radius=Math.round(config.shadow_radius*config.display_ratio)
     }
+    function setTitle(title){
+        root.title=title
+    }
 
 
     MouseArea {
@@ -136,6 +139,7 @@ ApplicationWindow {
             if (args.length>0){
                 args=args.join(' ')
                 console.log(args);
+                setTitle(args)
                 mainsession.shellProgramArgs=['-c',args]
             }
 
