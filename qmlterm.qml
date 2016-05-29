@@ -32,6 +32,14 @@ ApplicationWindow {
         }
     }
 
+    color:'transparent' 
+
+    Rectangle{
+        anchors.fill: parent
+        color: "black"
+        ColorAnimation on color { to: "transparent"; duration: 3000 }
+    }
+
     onActiveChanged:{
         borderstate(active,root.visibility)
     }
@@ -141,7 +149,6 @@ ApplicationWindow {
         onClicked: contextMenu.popup()  
     }
 
-    color: 'transparent'
     MouseArea {
         anchors.fill: parent;
         property variant clickPos: "1,1"
