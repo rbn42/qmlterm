@@ -21,7 +21,15 @@ ApplicationWindow {
     height: config.window_height
     title:mainsession.title
 
-    color: 'transparent'
+    color:'transparent' 
+
+    Rectangle{
+        anchors.fill: parent
+        color: "black"
+        ColorAnimation on color { to: "transparent"; duration: 3000 }
+        //width: 100; height: 100
+       // opacity:0.6
+    }
 
     Menu { id: contextMenu
         MenuItem {
