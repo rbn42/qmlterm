@@ -33,11 +33,12 @@ ApplicationWindow {
     }
 
     color:'transparent' 
-
     Rectangle{
         anchors.fill: parent
-        color: "black"
-        ColorAnimation on color { to: "transparent"; duration: 3000 }
+        color: "cyan"
+        //ColorAnimation on color { to: "transparent"; duration: 500 }
+        NumberAnimation on opacity { to: 0; duration: 0 }
+        opacity:0.5
     }
 
     onActiveChanged:{
