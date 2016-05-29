@@ -53,8 +53,6 @@ ApplicationWindow {
         }
         MenuItem {
             text: qsTr("Zoom &In")
-            shortcut: StandardKey.ZoomIn// "Ctrl++"
-            onTriggered:        resize(1.1)
             shortcut: StandardKey.ZoomIn // "Ctrl++"
             onTriggered: resize(1.1)
         }
