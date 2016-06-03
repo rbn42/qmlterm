@@ -62,6 +62,10 @@ ApplicationWindow {
             onTriggered:                resize(0.9);
         }
         MenuItem {
+            text: qsTr('&Full Screen')
+            onTriggered: terminal.pasteClipboard();
+        }
+        MenuItem {
             text: qsTr("&Quit")
             onTriggered:root.close() //Qt.quit() 
         }
