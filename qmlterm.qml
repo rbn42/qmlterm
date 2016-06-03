@@ -96,6 +96,12 @@ ApplicationWindow {
             text: qsTr("Mi&nimize")
             onTriggered:root.visibility= "Minimized"
         }
+
+        MenuItem {
+            text: qsTr('&Full Screen')
+            onTriggered: toggleFullscreen();
+        }
+
         MenuItem {
             text: qsTr("&Quit")
             onTriggered:root.close() 
@@ -143,6 +149,14 @@ ApplicationWindow {
         //faketitle.text=title
     }
 
+
+    function toggleFullscreen(){
+            console.log(root.visibility)
+            if(root.visibility==5)// "FullScreen")
+                root.visibility='AutomaticVisibility'
+            else
+                root.visibility= "FullScreen"
+    }
 
     MouseArea {
         anchors.fill: parent
