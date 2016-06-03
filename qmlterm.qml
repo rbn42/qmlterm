@@ -25,6 +25,8 @@ ApplicationWindow {
     function borderstate(_active,_visibility){
         if(_visibility==4){// "Maximized")
             bordershadow.state="MAXIMIZED"
+        }else if(_visibility==5){// "Full Screen")
+            bordershadow.state="MAXIMIZED"
         }else if(_active){
             bordershadow.state="ACTICATED"
         }else{
