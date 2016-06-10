@@ -17,4 +17,9 @@ Item{
     property var shadow_radius:5
     property var shadow_offset:1
     property var animation_duration:300
+
+    property var frame_border:0
+
+    property var shadow_spread:0.5
+    property var title_shadow_spread:0.8
 }

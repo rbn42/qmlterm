@@ -185,10 +185,10 @@ ApplicationWindow {
 
     Rectangle{
         id:fakeborder
-        anchors.topMargin:-1
-        anchors.rightMargin:-1
-        anchors.leftMargin:-1
-        anchors.bottomMargin:-1
+        anchors.topMargin:config.frame_border-1
+        anchors.rightMargin:config.frame_border-1
+        anchors.leftMargin:config.frame_border-1
+        anchors.bottomMargin:config.frame_border-1
         border.color: "black"
         border.width: 1
         anchors.fill: parent
@@ -296,7 +296,7 @@ ApplicationWindow {
         samples: 17
         color: "black"
         source: terminal
-        spread:0.5
+        spread:config.shadow_spread 
     }
     DropShadow {
         id:titleshadow
@@ -304,7 +304,7 @@ ApplicationWindow {
         samples: 17
         color: "white"
         source: faketitle
-        spread:0.8
+        spread:config.title_shadow_spread
     }
     DropShadow {
         id:bordershadow
@@ -313,7 +313,7 @@ ApplicationWindow {
         samples: 17
         color: "black"
         source: fakeborder
-        spread:0.5
+        spread:config.shadow_spread 
 
         states: [
             State {
