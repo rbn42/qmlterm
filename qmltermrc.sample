@@ -22,4 +22,6 @@ Item{
 
     property var shadow_spread:0.5
     property var title_shadow_spread:0.8
+
+    property var maximized_state:'MAXIMIZED_NOTITLE'
 }

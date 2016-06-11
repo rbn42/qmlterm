@@ -24,9 +24,9 @@ ApplicationWindow {
 
     function borderstate(_active,_visibility){
         if(_visibility==4){// "Maximized")
-            bordershadow.state="MAXIMIZED"
+            bordershadow.state=config.maximized_state //"MAXIMIZED"
         }else if(_visibility==5){// "Full Screen")
-            bordershadow.state="MAXIMIZED"
+            bordershadow.state=config.maximized_state //#"MAXIMIZED"
         }else if(_active){
             bordershadow.state="ACTICATED"
         }else{
@@ -333,10 +333,14 @@ ApplicationWindow {
                 PropertyChanges {target:terminal.anchors;topMargin:18;}
             },
             State {
-                name: "MAXIMIZED"
+                name: "MAXIMIZED_NOTITLE"
                 PropertyChanges {target:fakeborder.border;width:0;}
                 PropertyChanges {target:faketitle;color:'transparent';}
                 PropertyChanges {target:terminal.anchors;topMargin:0;}
+            },
+            State {
+                name: "MAXIMIZED"
+                PropertyChanges {target:fakeborder.border;width:0;}
             }
         ]
 
