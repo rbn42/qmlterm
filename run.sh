@@ -1,12 +1,11 @@
 #!/bin/bash 
 
-#cp ~/.config/qmlterm/config ~/git/qmlterm/config
-cp ~/.qmltermrc ~/git/qmlterm/Configuration.qml
+cp ~/.qmltermrc $(dirname "$0")/Configuration.qml
 
 qmlscene \
     "$@" \
     -I ~/git/qmltermwidget/build \
     -I ~/git/QMLProcess/build \
-    ~/git/qmlterm/qmlterm.qml \
+    $(dirname "$0")/qmlterm.qml \
 
 #    --transparent
