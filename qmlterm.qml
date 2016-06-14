@@ -204,7 +204,7 @@ ApplicationWindow {
         samples: 17
         color: "black"
         source: terminal
-        spread:0.5
+        spread:config.shadow_spread
     }
     onClosing:{
         console.log('close')
