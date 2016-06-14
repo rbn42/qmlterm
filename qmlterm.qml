@@ -11,10 +11,8 @@ ApplicationWindow {
 
     Rectangle{
         anchors.fill: parent
-        color: "white"
-        //ColorAnimation on color { to: "transparent"; duration: 500 }
-//        NumberAnimation on opacity { to: 0.5; duration: 0 }
-        opacity:0.3
+        color: config.background_color
+        opacity:config.background_opacitiy
     }
     property var current_window_width
     property var current_window_height
