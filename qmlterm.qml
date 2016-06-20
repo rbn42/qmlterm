@@ -9,6 +9,13 @@ import QtGraphicalEffects 1.0
 import "utils.js" as Utils
 
 ApplicationWindow {
+
+    Rectangle{
+        anchors.fill: parent
+        color: config.background_color
+        opacity:config.background_opacitiy
+    }
+
     property var current_window_width
     property var current_window_height
 
@@ -297,7 +304,9 @@ ApplicationWindow {
         color: "black"
         source: terminal
         spread:config.shadow_spread 
+        visible:config.enable_shadow
     }
+    
     DropShadow {
         id:titleshadow
         anchors.fill: faketitle //   radius: 15
@@ -306,6 +315,7 @@ ApplicationWindow {
         source: faketitle
         spread:config.title_shadow_spread
     }
+
     DropShadow {
         id:bordershadow
         anchors.fill: fakeborder
@@ -314,7 +324,7 @@ ApplicationWindow {
         color: "black"
         source: fakeborder
         spread:config.shadow_spread 
-        visible:config.show_border_shadow
+        visible:config.enable_border_shadow
 
         states: [
             State {
