@@ -203,6 +203,7 @@ ApplicationWindow {
         color: "black"
         source: terminal
         spread:config.shadow_spread
+        visible:config.enable_shadow
     }
     onClosing:{
         console.log('close')
