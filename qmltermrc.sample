@@ -18,13 +18,18 @@ Item{
     property var shadow_offset:1
     property var animation_duration:300
 
-    property var frame_border:0.3
+    property var frame_border: 1 //0.3
 
     property var shadow_spread:0.4
     property var title_shadow_spread:0.6
 
     property var maximized_state:'MAXIMIZED'
     property var background_color:'white' // 'transparent'
-    property var background_opacitiy:0.3 // 0
+    property var background_opacitiy: 0.3 // 0
+    property var border_shadow_active: 1
+    property var border_shadow_deactive:5
+    property var border_color_active:'white' //0 // 1 // 1
+    property var border_color_deactive:'black'  //// 0 // 1 //5
+    property var show_border_shadow:false
 }
 

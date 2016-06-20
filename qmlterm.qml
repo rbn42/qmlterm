@@ -185,12 +185,12 @@ ApplicationWindow {
 
     Rectangle{
         id:fakeborder
-        anchors.topMargin:config.frame_border-1
-        anchors.rightMargin:config.frame_border-1
-        anchors.leftMargin:config.frame_border-1
-        anchors.bottomMargin:config.frame_border-1
+        //anchors.topMargin:config.frame_border-1
+        //anchors.rightMargin:config.frame_border-1
+        //anchors.leftMargin:config.frame_border-1
+        //anchors.bottomMargin:config.frame_border-1
         border.color: "black"
-        border.width: 1
+        border.width: config.frame_border
         anchors.fill: parent
         color:'transparent'
     }
@@ -314,20 +314,37 @@ ApplicationWindow {
         color: "black"
         source: fakeborder
         spread:config.shadow_spread 
+        visible:config.show_border_shadow
 
         states: [
             State {
                 name: "DEACTIVATED"
-                PropertyChanges {target:fakeborder.border;width:1;}
-                PropertyChanges { target: bordershadow;radius:1;}
+                PropertyChanges {
+                    target:fakeborder.border;
+                    width:1;
+                    color:config.border_color_deactive
+                }
+                PropertyChanges { 
+                    target: bordershadow;
+                    radius:config.border_shadow_deactive;
+                    color:config.border_color_deactive
+                }
                 PropertyChanges {target:faketitle;color:'black';}
                 PropertyChanges { target: titleshadow; radius:3;}
                 PropertyChanges {target:terminal.anchors;topMargin:18;}
             },
             State {
                 name: "ACTICATED"
-                PropertyChanges {target:fakeborder.border;width:1;}
-                PropertyChanges { target: bordershadow;radius:5;}
+                PropertyChanges {
+                    target:fakeborder.border;
+                    width:1;
+                    color:config.border_color_active
+                }
+                PropertyChanges { 
+                    target: bordershadow;
+                    radius:config.border_shadow_active;
+                    color:config.border_color_active
+                }
                 PropertyChanges {target:faketitle;color:'black';}
                 PropertyChanges { target: titleshadow;radius:10;}
                 PropertyChanges {target:terminal.anchors;topMargin:18;}
@@ -348,6 +365,9 @@ ApplicationWindow {
             Transition {
                 from: "DEACTIVATED"
                 to: "ACTICATED"
+                ColorAnimation { target: fakeborder.border; 
+                    duration:config.animation_duration
+                }
                 ColorAnimation { target: bordershadow; 
                     duration: config.animation_duration
                 }
@@ -367,6 +387,9 @@ ApplicationWindow {
             Transition {
                 from: "ACTICATED"
                 to: "DEACTIVATED"
+                ColorAnimation { target: fakeborder.border; 
+                    duration:config.animation_duration
+                }
                 ColorAnimation { target: bordershadow; 
                     duration:config.animation_duration
                 }
