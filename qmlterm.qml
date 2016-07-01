@@ -74,23 +74,39 @@ ApplicationWindow {
             }
             //shortcut:StandardKey.New // "Ctrl+T"
         }
+
         MenuItem {
             text: qsTr('&Copy')
             onTriggered: terminal.copyClipboard();
             //shortcut:StandardKey.Copy  // "Ctrl+C"
             shortcut: "Ctrl+Shift+C"
         }
+
         MenuItem {
             text: qsTr('&Paste')
             onTriggered: terminal.pasteClipboard();
             //shortcut:StandardKey.Paste // "Ctrl+V"
             shortcut: "Ctrl+Shift+V"
         }
+
+        MenuItem {
+            text: qsTr('Copy Screen To &Vim')
+            onTriggered:{
+                //Copy the screen to clipboard
+                terminal.copyScreenClipboard();
+
+                myLauncher.launch('bash',[
+                    Utils.url2path(Qt.resolvedUrl('select_from_screen.sh')),
+                ]);
+            }
+        }
+
         MenuItem {
             text: qsTr("Zoom &In")
             shortcut: StandardKey.ZoomIn // "Ctrl++"
             onTriggered: resize(1.1)
         }
+
         MenuItem {
             text: qsTr("Zoom Out")
             shortcut: StandardKey.ZoomOut // "Ctrl+-"
@@ -101,6 +117,7 @@ ApplicationWindow {
             text: qsTr("&Maximize")
             onTriggered:toggleMaximize()  
         }
+
         MenuItem {
             text: qsTr("Mi&nimize")
             onTriggered:root.visibility= "Minimized"
@@ -115,6 +132,7 @@ ApplicationWindow {
             text: qsTr("&Quit")
             onTriggered:root.close() 
         }
+
     }
 
     Action{

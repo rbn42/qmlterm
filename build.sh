@@ -7,7 +7,8 @@ sudo apt-get install build-essential qmlscene qt5-qmake qt5-default qtdeclarativ
 cd ~/git
 git clone https://github.com/rbn42/qmltermwidget.git
 cd ~/git/qmltermwidget
-git checkout transparent-background
+#git checkout transparent-background
+git checkout qmlterm
 mkdir build
 cd build
 qmake ..
