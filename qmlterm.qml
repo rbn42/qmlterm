@@ -60,6 +60,18 @@ ApplicationWindow {
         }
 
         MenuItem {
+            text: qsTr('Copy Screen To &Vim')
+            onTriggered:{
+                //Copy the screen to clipboard
+                terminal.copyScreenClipboard();
+
+                myLauncher.launch('bash',[
+                    Utils.url2path(Qt.resolvedUrl('select_from_screen.sh')),
+                ]);
+            }
+        }
+
+        MenuItem {
             text: qsTr("Zoom &In")
             shortcut: StandardKey.ZoomIn // "Ctrl++"
             onTriggered: resize(1.1)
