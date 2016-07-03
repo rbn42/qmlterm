@@ -10,6 +10,8 @@ import "utils.js" as Utils
 
 ApplicationWindow {
 
+    flags: Qt.FramelessWindowHint
+
     Rectangle{
         anchors.fill: parent
         color: config.background_color
