@@ -262,24 +262,9 @@ ApplicationWindow {
         antialiasText:true
         Component.onCompleted:{
             resize(1.0)
-
-            var args=[]
-            for(var i=0;i<Qt.application.arguments.length;i++){
-                var s=Qt.application.arguments[i] 
-                if (s=='-e'){
-                    i+=1
-                    s=Qt.application.arguments[i] 
-                    args.push(s)
-                }else if (s.indexOf('--command=')==0){
-                    s=s.substr('--command='.length)
-                    args.push(s)
-                }
-            }
-            if (args.length>0){
-                args=args.join(' ')
-                console.log(args);
-                setTitle(args)
-                mainsession.shellProgramArgs=['-c',args]
+            if(command.length>0){
+                setTitle(command)
+                mainsession.shellProgramArgs=['-c',command]
             }
 
             mainsession.startShellProgram();
