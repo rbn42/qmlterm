@@ -22,3 +22,11 @@ qmake ..
 make
 cd ..
 cp ./qmldir ./build/QMLProcess
+
+
+cd ~/git/qmlterm
+mkdir build
+cd build
+qmake ..
+make
+
