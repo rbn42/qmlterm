@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qmlterm.qml</file>
+        <file>utils.js</file>
+    </qresource>
+</RCC>

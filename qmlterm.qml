@@ -14,28 +14,41 @@ ApplicationWindow {
 
     Rectangle{
         anchors.fill: parent
-        color: config.background_color
-        opacity:config.background_opacitiy
+        color:settings.value("window/background_color","black") 
+        opacity:settings.value("window/background_opacitiy","1.0")
     }
 
     property var current_window_width
     property var current_window_height
 
-    Configuration{id:config}
+    Item {
+        id:config2
+        width: settings.value("window/width",960)
+        height: settings.value("window/height",480)
+        property var scale:parseFloat(settings.value("window/scale",1.0))
+        property var font_size:parseInt(settings.value("font/size",12))
+        property var shadow_offset:parseInt(settings.value("font/shadow_offset",1))
+        property var shadow_radius:parseInt(settings.value("font/shadow_radius",5))
+        property var shadow_spread:parseFloat(settings.value("font/shadow_spread",0.4))
+        property var animation_duration:parseInt(settings.value("animation/duration",300))
+        property var maximized_state:"MAXIMIZED"
+
+    }
+
     Launcher { id: myLauncher }
 
     id:root
 
     visible: true
-    width: config.window_width
-    height: config.window_height
+    width: config2.width
+    height: config2.height
     title:mainsession.title
 
     function borderstate(_active,_visibility){
         if(_visibility==4){// "Maximized")
-            bordershadow.state=config.maximized_state //"MAXIMIZED"
+            bordershadow.state=config2.maximized_state //"MAXIMIZED"
         }else if(_visibility==5){// "Full Screen")
-            bordershadow.state=config.maximized_state //#"MAXIMIZED"
+            bordershadow.state=config2.maximized_state //#"MAXIMIZED"
         }else if(_active){
             bordershadow.state="ACTICATED"
         }else{
@@ -145,26 +158,26 @@ ApplicationWindow {
     function resize(ratio){
         var resize_window=false;
         if(!current_window_width){
-            current_window_width=config.window_width;
-            current_window_height=config.window_height;
+            current_window_width=config2.width;
+            current_window_height=config2.height;
         }
         if(root.width==current_window_width)
             if(root.height==current_window_height)
                 resize_window=true;
 
-        config.display_ratio*=ratio;
+        config2.scale*=ratio;
 
-        terminal.font.pointSize=Math.round(config.font_size*config.display_ratio);
+        terminal.font.pointSize=Math.round(config2.font_size*config2.scale);
         // Do not resize windows that have been resized manually.
         if(resize_window){
-            root.width=config.window_width*config.display_ratio;
-            root.height=config.window_height*config.display_ratio;
+            root.width=config2.width*config2.scale;
+            root.height=config2.height*config2.scale;
             current_window_width=root.width;
             current_window_height=root.height;
         }
-        terminalshadow.horizontalOffset=Math.round(config.shadow_offset*config.display_ratio)
-        terminalshadow.verticalOffset=Math.round(config.shadow_offset*config.display_ratio)
-        terminalshadow.radius=Math.round(config.shadow_radius*config.display_ratio)
+        terminalshadow.horizontalOffset=Math.round(config2.shadow_offset*config2.scale)
+        terminalshadow.verticalOffset=Math.round(config2.shadow_offset*config2.scale)
+        terminalshadow.radius=Math.round(config2.shadow_radius*config2.scale)
     }
     function toggleMaximize(){
             console.log(root.visibility)
@@ -217,14 +230,14 @@ ApplicationWindow {
         //anchors.leftMargin:config.frame_border-1
         //anchors.bottomMargin:config.frame_border-1
         border.color: "black"
-        border.width: config.frame_border
+        border.width: settings.value("border/width",1)
         anchors.fill: parent
         color:'transparent'
     }
 
     Text {
         id:faketitle
-        font.family:config.title_font 
+        font.family:settings.value("title/font","monospace")
         horizontalAlignment:Text.AlignHCenter
         anchors.fill: parent
         text:mainsession.title
@@ -238,10 +251,9 @@ ApplicationWindow {
         id: terminal
         anchors.fill: parent
         anchors.topMargin:18
-        font.family:config.font_family
-        font.pointSize: config.font_size
-        colorScheme:config.color_scheme
-        //colorScheme:'BlackOnWhite'
+        font.family:settings.value("font/family","monaco")
+        font.pointSize: config2.font_size
+        colorScheme:settings.value("session/color_scheme","custom")
         session:mainsession
         onTerminalUsesMouseChanged: console.log(terminalUsesMouse);
         onTerminalSizeChanged: console.log(terminalSize);
@@ -288,7 +300,7 @@ ApplicationWindow {
     QMLTermSession{
         id: mainsession
         /*historySize*/
-        shellProgram:config.shell
+        shellProgram:settings.value("session/shell","fish")
         //shellProgramArgs:['--rcfile','~/apps/qmlterm/bashrc']
         /*title*/
         initialWorkingDirectory: "$PWD"
@@ -319,14 +331,14 @@ ApplicationWindow {
     DropShadow {
         id:terminalshadow
         anchors.fill: terminal
-        horizontalOffset: config.shadow_offset
-        verticalOffset: config.shadow_offset
-        radius: config.shadow_radius
+        horizontalOffset: config2.shadow_offset
+        verticalOffset: config2.shadow_offset
+        radius: config2.shadow_radius
         samples: 17
-        color: config.shadow_color
+        color: settings.value("font/shadow_color","black")
         source: terminal
-        spread:config.shadow_spread 
-        visible:config.enable_shadow
+        spread:config2.shadow_spread
+        visible:"true"==settings.value("font/shadow",true)
     }
     
     DropShadow {
@@ -335,7 +347,7 @@ ApplicationWindow {
         samples: 17
         color: "white"
         source: faketitle
-        spread:config.title_shadow_spread
+        spread:settings.value("title/shadow_spread",0.6)
     }
 
     DropShadow {
@@ -345,8 +357,8 @@ ApplicationWindow {
         samples: 17
         color: "black"
         source: fakeborder
-        spread:config.shadow_spread 
-        visible:config.enable_border_shadow
+        spread:config2.shadow_spread 
+        visible:"true"==settings.value("border/shadow","true")
 
         states: [
             State {
@@ -354,12 +366,12 @@ ApplicationWindow {
                 PropertyChanges {
                     target:fakeborder.border;
                     width:1;
-                    color:config.border_color_deactive
+                    color:settings.value("border/deactive_color","")
                 }
                 PropertyChanges { 
                     target: bordershadow;
-                    radius:config.border_shadow_deactive;
-                    color:config.border_color_deactive
+                    radius:settings.value("border/deactive_shadow",0);
+                    color:settings.value("border/deactive_color","")
                 }
                 PropertyChanges {target:faketitle;color:'black';}
                 PropertyChanges { target: titleshadow; radius:3;}
@@ -370,12 +382,12 @@ ApplicationWindow {
                 PropertyChanges {
                     target:fakeborder.border;
                     width:1;
-                    color:config.border_color_active
+                    color:settings.value("border/active_color","")
                 }
                 PropertyChanges { 
                     target: bordershadow;
-                    radius:config.border_shadow_active;
-                    color:config.border_color_active
+                    radius:settings.value("border/active_shadow",0);
+                    color:settings.value("border/active_color","")
                 }
                 PropertyChanges {target:faketitle;color:'black';}
                 PropertyChanges { target: titleshadow;radius:10;}
@@ -398,21 +410,21 @@ ApplicationWindow {
                 from: "DEACTIVATED"
                 to: "ACTICATED"
                 ColorAnimation { target: fakeborder.border; 
-                    duration:config.animation_duration
+                    duration:config2.animation_duration
                 }
                 ColorAnimation { target: bordershadow; 
-                    duration: config.animation_duration
+                    duration: config2.animation_duration
                 }
                 ColorAnimation { target: titleshadow; 
-                    duration: config.animation_duration 
+                    duration: config2.animation_duration 
                 }
                 NumberAnimation {target:bordershadow;
                     properties: "radius";
-                    duration:config.animation_duration 
+                    duration:config2.animation_duration 
                 }
                 NumberAnimation {target:titleshadow;
                     properties: "radius";
-                    duration:config.animation_duration 
+                    duration:config2.animation_duration 
                 }
     // easing.type: Easing.InOutQuad }
             },
@@ -420,19 +432,19 @@ ApplicationWindow {
                 from: "ACTICATED"
                 to: "DEACTIVATED"
                 ColorAnimation { target: fakeborder.border; 
-                    duration:config.animation_duration
+                    duration:config2.animation_duration
                 }
                 ColorAnimation { target: bordershadow; 
-                    duration:config.animation_duration
+                    duration:config2.animation_duration
                 }
                 ColorAnimation { target: titleshadow; 
-                    duration:config.animation_duration 
+                    duration:config2.animation_duration 
                 }
                 NumberAnimation {target:bordershadow;
-                    properties: "radius";duration: config.animation_duration
+                    properties: "radius";duration: config2.animation_duration
                 }
                 NumberAnimation {target:titleshadow;
-                    properties: "radius";duration: config.animation_duration
+                    properties: "radius";duration: config2.animation_duration
                 }
                 // easing.type: Easing.InOutQuad }
             }
