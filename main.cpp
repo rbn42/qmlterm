@@ -11,6 +11,8 @@ int main(int argc, char *argv[])
 {
     qDebug() << "Hello world!";
 
+    QString path_terminal(realpath(argv[0],NULL));
+
     QCommandLineParser parser;
     parser.setApplicationDescription("Terminal");
     parser.addHelpOption();
@@ -35,6 +37,9 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("settings", &settings);
     engine.rootContext()->setContextProperty("command", command);
+    engine.rootContext()->setContextProperty("path_terminal", path_terminal);
+    engine.rootContext()->setContextProperty("path_configuration",parser.value("c") );
+
     engine.load(QUrl(QStringLiteral("qrc:/qmlterm.qml")));
 
     return app.exec();

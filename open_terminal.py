@@ -9,7 +9,10 @@ logging.basicConfig(level=logging.DEBUG,
                     filemode='a')
 logging.info(sys.argv)
 
-terminal, path = sys.argv[1:]
+terminal, configuration, path = sys.argv[1:]
 if len(path) > 1:
     os.chdir(path)
+if len(configuration) > 1:
+    terminal = terminal + " -c " + configuration
+logging.info(terminal)
 os.system(terminal + ' &')
