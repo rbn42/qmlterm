@@ -112,7 +112,7 @@ ApplicationWindow {
                 terminal.copyScreenClipboard();
 
                 myLauncher.launch('bash',[
-                    Utils.url2path(Qt.resolvedUrl('select_from_screen.sh')),
+                    Utils.findFile('select_from_screen.sh',path_terminal),
                 ]);
             }
         }
