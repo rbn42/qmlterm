@@ -89,9 +89,7 @@ ApplicationWindow {
     FakeTitle{
         id:faketitle
         config:config
-        text.font.family:settings.value("title/font","monospace")
         text.text:mainsession.title
-        shadow.spread:settings.value("title/shadow_spread",0.6)
     }
 
     Terminal{
