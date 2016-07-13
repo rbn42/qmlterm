@@ -9,12 +9,10 @@ import "utils.js" as Utils
 ApplicationWindow {
 
     id:root
-
     visible: true
     width: config.window_width
     height: config.window_height
     title:mainsession.title
-
     color: 'transparent'
 
     Configuration{id:config}
@@ -22,6 +20,19 @@ ApplicationWindow {
     Background{
         id:background
         config:config
+    }
+
+    WindowState{
+        id:state
+        background:background
+    }
+
+    onActiveChanged:{
+        state.changestate(active,root.visibility)
+    }
+
+    onVisibilityChanged:{
+        state.changestate(active,visibility)
     }
 
     ContextMenu{
@@ -32,13 +43,9 @@ ApplicationWindow {
     }
 
     function resize(ratio){
-        var resize_window=Utils.resize(ratio,config,root)
-
-        // Do not resize windows that have been resized manually.
-
+        Utils.resize(ratio,config,root)
         terminal.font.pointSize=Math.round(config.font_size*config.display_ratio);
         terminalshadow.resize()
-
     }
 
     MouseArea {
@@ -49,7 +56,9 @@ ApplicationWindow {
 
     Terminal{
         id: terminal
-        config:config
+        font.family:config.font_family
+        font.pointSize: config.font_size
+        colorScheme:config.color_scheme
         root:root
         session:mainsession
         Keys.onPressed:if(event.key==Qt.Key_Menu)contextMenu.popup()

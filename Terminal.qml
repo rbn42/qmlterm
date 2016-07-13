@@ -3,9 +3,7 @@ import QMLTermWidget 1.0
 
 QMLTermWidget {
 
-    property var config
     property var root
-
 
     function setTitle(title){
         root.title=title
@@ -14,9 +12,6 @@ QMLTermWidget {
     id: terminal
 
     anchors.fill: parent
-    font.family:config.font_family
-    font.pointSize: config.font_size
-    colorScheme:config.color_scheme
     onTerminalUsesMouseChanged: console.log(terminalUsesMouse);
     onTerminalSizeChanged: console.log(terminalSize);
     enableBold:true
