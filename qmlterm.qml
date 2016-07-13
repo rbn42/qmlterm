@@ -1,4 +1,3 @@
-import QMLProcess 1.0
 import QtQuick 2.2
 import QMLTermWidget 1.0
 import QtQuick.Controls 1.1
@@ -11,18 +10,6 @@ import "utils.js" as Utils
 ApplicationWindow {
 
     flags: Qt.FramelessWindowHint
-
-    Rectangle{
-        anchors.fill: parent
-        color: config.background_color
-        opacity:config.background_opacitiy
-    }
-
-    property var current_window_width
-    property var current_window_height
-
-    Configuration{id:config}
-    Launcher { id: myLauncher }
 
     id:root
 
@@ -59,132 +46,33 @@ ApplicationWindow {
         borderstate(active,visibility)
     }
 
-    Menu { 
-        id: contextMenu
-        MenuItem {
-            id:openterminal
-            text: qsTr('&Open Terminal')
-            onTriggered:{
-                console.log(mainsession.foregroundProcessName)
-                console.log(mainsession.currentDir)
+    Configuration{id:config}
 
-                myLauncher.launch('python',[
-                    Utils.url2path(Qt.resolvedUrl('open_terminal.py')),
-                    Utils.url2path(Qt.resolvedUrl('run.sh')),
-                    mainsession.currentDir,
-                ]);
-            }
-            //shortcut:StandardKey.New // "Ctrl+T"
-        }
-
-        MenuItem {
-            text: qsTr('&Copy')
-            onTriggered: terminal.copyClipboard();
-            //shortcut:StandardKey.Copy  // "Ctrl+C"
-            shortcut: "Ctrl+Shift+C"
-        }
-
-        MenuItem {
-            text: qsTr('&Paste')
-            onTriggered: terminal.pasteClipboard();
-            //shortcut:StandardKey.Paste // "Ctrl+V"
-            shortcut: "Ctrl+Shift+V"
-        }
-
-        MenuItem {
-            text: qsTr('Copy Screen To &Vim')
-            onTriggered:{
-                //Copy the screen to clipboard
-                terminal.copyScreenClipboard();
-
-                myLauncher.launch('bash',[
-                    Utils.url2path(Qt.resolvedUrl('select_from_screen.sh')),
-                ]);
-            }
-        }
-
-        MenuItem {
-            text: qsTr("Zoom &In")
-            shortcut: StandardKey.ZoomIn // "Ctrl++"
-            onTriggered: resize(1.1)
-        }
-
-        MenuItem {
-            text: qsTr("Zoom Out")
-            shortcut: StandardKey.ZoomOut // "Ctrl+-"
-            onTriggered: resize(0.9);
-        }
-
-        MenuItem {
-            text: qsTr("&Maximize")
-            onTriggered:toggleMaximize()  
-        }
-
-        MenuItem {
-            text: qsTr("Mi&nimize")
-            onTriggered:root.visibility= "Minimized"
-        }
-
-        MenuItem {
-            text: qsTr('&Full Screen')
-            onTriggered: toggleFullscreen();
-        }
-
-        MenuItem {
-            text: qsTr("&Quit")
-            onTriggered:root.close() 
-        }
-
+    Background{
+        id:background
+        config:config
     }
 
-    Action{
-        onTriggered: searchButton.visible = !searchButton.visible
-        shortcut: "Ctrl+F"
+    ContextMenu{
+        id: contextMenu
+        session:mainsession
+        root:root
+        terminal:terminal
     }
 
     function resize(ratio){
-        var resize_window=false;
-        if(!current_window_width){
-            current_window_width=config.window_width;
-            current_window_height=config.window_height;
-        }
-        if(root.width==current_window_width)
-            if(root.height==current_window_height)
-                resize_window=true;
-
-        config.display_ratio*=ratio;
+        Utils.resize(ratio,config,root)
 
         terminal.font.pointSize=Math.round(config.font_size*config.display_ratio);
-        // Do not resize windows that have been resized manually.
-        if(resize_window){
-            root.width=config.window_width*config.display_ratio;
-            root.height=config.window_height*config.display_ratio;
-            current_window_width=root.width;
-            current_window_height=root.height;
-        }
-        terminalshadow.horizontalOffset=Math.round(config.shadow_offset*config.display_ratio)
-        terminalshadow.verticalOffset=Math.round(config.shadow_offset*config.display_ratio)
-        terminalshadow.radius=Math.round(config.shadow_radius*config.display_ratio)
+        terminalshadow.resize()
     }
+
     function toggleMaximize(){
             console.log(root.visibility)
             if(root.visibility==4)// "Maximized")
                 root.visibility='AutomaticVisibility'
             else
                 root.visibility= "Maximized"
-    }
-    function setTitle(title){
-        //root.title=title
-        //faketitle.text=title
-    }
-
-
-    function toggleFullscreen(){
-            console.log(root.visibility)
-            if(root.visibility==5)// "FullScreen")
-                root.visibility='AutomaticVisibility'
-            else
-                root.visibility= "FullScreen"
     }
 
     MouseArea {
@@ -232,101 +120,30 @@ ApplicationWindow {
         font.pixelSize: 18
     }
 
-    QMLTermWidget {
-
-        Keys.onPressed:if(event.key==Qt.Key_Menu)contextMenu.popup()
+    Terminal{
         id: terminal
-        anchors.fill: parent
-        anchors.topMargin:18
-        font.family:config.font_family
-        font.pointSize: config.font_size
-        colorScheme:config.color_scheme
-        //colorScheme:'BlackOnWhite'
+        config:config
+        root:root
         session:mainsession
-        onTerminalUsesMouseChanged: console.log(terminalUsesMouse);
-        onTerminalSizeChanged: console.log(terminalSize);
-        enableBold:true
-        blinkingCursor:true
-        antialiasText:true
-        Component.onCompleted:{
-            resize(1.0)
-
-            var args=[]
-            for(var i=0;i<Qt.application.arguments.length;i++){
-                var s=Qt.application.arguments[i] 
-                if (s=='-e'){
-                    i+=1
-                    s=Qt.application.arguments[i] 
-                    args.push(s)
-                }else if (s.indexOf('--command=')==0){
-                    s=s.substr('--command='.length)
-                    args.push(s)
-                }
-            }
-            if (args.length>0){
-                args=args.join(' ')
-                console.log(args);
-                setTitle(args)
-                mainsession.shellProgramArgs=['-c',args]
-            }
-
-            mainsession.startShellProgram();
-        }
-
-        QMLTermScrollbar {
-            terminal: terminal
-            width: 20
-            Rectangle {
-                opacity: 0.4
-                anchors.margins: 5
-                radius: width * 0.5
-                anchors.fill: parent
-            }
-        }
+        Keys.onPressed:if(event.key==Qt.Key_Menu)contextMenu.popup()
+        anchors.topMargin:18
     }
 
-    QMLTermSession{
+    Session{
         id: mainsession
-        /*historySize*/
         shellProgram:config.shell
-        //shellProgramArgs:['--rcfile','~/apps/qmlterm/bashrc']
-        /*title*/
-        initialWorkingDirectory: "$PWD"
-        onMatchFound: {
-            console.log("found at: %1 %2 %3 %4".arg(startColumn).arg(startLine).arg(endColumn).arg(endLine));
-        }
-        onNoMatchFound: {
-            console.log("not found");
-        }
-        onTitleChanged:{
-            console.log("title changed");
-        }
-        onFinished:{
-            Qt.quit()
-        }
-    }
-    Button {
-        id: searchButton
-        text: "Find version"
-        anchors.bottom: parent.bottom
-        anchors.right: parent.right
-        visible: false
-        onClicked: mainsession.search("version");
     }
 
-    Component.onCompleted: terminal.forceActiveFocus();
+    Component.onCompleted:{
+        resize(1.0)
+        terminal.forceActiveFocus();
+    }
     
-    DropShadow {
+    TerminalShadow {
         id:terminalshadow
+        config:config
         anchors.fill: terminal
-        horizontalOffset: config.shadow_offset
-        verticalOffset: config.shadow_offset
-        radius: config.shadow_radius
-        samples: 17
-        color: config.shadow_color
         source: terminal
-        spread:config.shadow_spread 
-        visible:config.enable_shadow
     }
     
     DropShadow {
