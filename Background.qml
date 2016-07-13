@@ -29,6 +29,7 @@ Rectangle{
     ]
 
     transitions: [
+
         Transition {
             from: "DEACTIVATED"
             to: "ACTIVATED"
@@ -40,6 +41,7 @@ Rectangle{
                 duration:config.animation_duration
             }
         },
+
         Transition {
             from: "ACTIVATED"
             to: "DEACTIVATED"
@@ -50,5 +52,7 @@ Rectangle{
                 properties: "opacity";
                 duration:config.animation_duration
             }
-        }]
-    }
+        }
+
+    ]
+}
