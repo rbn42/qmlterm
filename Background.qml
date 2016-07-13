@@ -7,4 +7,5 @@ Rectangle{
     anchors.fill: parent
     color: config.background_color
     opacity:config.background_opacitiy
+
 }

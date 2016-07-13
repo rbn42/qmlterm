@@ -1,6 +1,5 @@
 import QtQuick 2.2
 import QtQuick.Controls 1.1
-import QtQuick.Controls.Styles 1.0
 
 import "utils.js" as Utils
 
@@ -9,6 +8,7 @@ Menu {
     property var session
     property var root
     property var terminal
+    property var launcher
 
     MenuItem {
         id:openterminal
@@ -17,7 +17,7 @@ Menu {
             console.log(session.foregroundProcessName)
             console.log(session.currentDir)
 
-            myLauncher.launch('python',[
+            launcher.launch('python',[
                 Utils.url2path(Qt.resolvedUrl('open_terminal.py')),
                 Utils.url2path(Qt.resolvedUrl('run.sh')),
                 session.currentDir,

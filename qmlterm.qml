@@ -35,20 +35,15 @@ ApplicationWindow {
         session:mainsession
         root:root
         terminal:terminal
+        launcher:myLauncher
     }
 
     function resize(ratio){
-        var resize_window=Utils.resize(ratio,config)
+        var resize_window=Utils.resize(ratio,config,root)
+
+        // Do not resize windows that have been resized manually.
 
         terminal.font.pointSize=Math.round(config.font_size*config.display_ratio);
-        // Do not resize windows that have been resized manually.
-        if(resize_window){
-            root.width=config.window_width*config.display_ratio;
-            root.height=config.window_height*config.display_ratio;
-            current_window_width=root.width;
-            current_window_height=root.height;
-        }
-
         terminalshadow.resize()
 
     }
@@ -81,6 +76,7 @@ ApplicationWindow {
         id:terminalshadow
         config:config
         anchors.fill: terminal
+        source: terminal
     }
 
     onClosing:{
