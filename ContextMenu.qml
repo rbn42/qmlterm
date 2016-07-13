@@ -1,3 +1,4 @@
+import QMLProcess 1.0
 import QtQuick 2.2
 import QtQuick.Controls 1.1
 
@@ -8,7 +9,8 @@ Menu {
     property var session
     property var root
     property var terminal
-    property var launcher
+
+    Launcher { id: launcher }
 
     MenuItem {
         id:openterminal

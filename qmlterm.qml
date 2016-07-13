@@ -1,4 +1,3 @@
-import QMLProcess 1.0
 import QtQuick 2.2
 import QMLTermWidget 1.0
 import QtQuick.Controls 1.1
@@ -20,8 +19,6 @@ ApplicationWindow {
 
     Configuration{id:config}
 
-    Launcher { id: myLauncher }
-
     Background{
         id:background
         config:config
@@ -32,7 +29,6 @@ ApplicationWindow {
         session:mainsession
         root:root
         terminal:terminal
-        launcher:myLauncher
     }
 
     function resize(ratio){
