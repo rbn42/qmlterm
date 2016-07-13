@@ -83,6 +83,7 @@ ApplicationWindow {
 
     FakeBorder{
         id:fakeborder
+        config:config
         border.border.width: settings.value("border/width",1)
         shadow.spread:config.shadow_spread 
         shadow.visible:"true"==settings.value("border/shadow","true")
@@ -90,6 +91,7 @@ ApplicationWindow {
 
     FakeTitle{
         id:faketitle
+        config:config
         text.font.family:settings.value("title/font","monospace")
         text.text:mainsession.title
         shadow.spread:settings.value("title/shadow_spread",0.6)

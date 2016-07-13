@@ -29,17 +29,13 @@ Item{
                 state:"ACTIVATED"
             }
             PropertyChanges {
-                target:fakeborder.border.border;
-                width:1;
-                color:settings.value("border/active_color","")
+                target:faketitle;
+                state:"ACTIVATED"
             }
-            PropertyChanges { 
-                target: fakeborder.shadow;
-                radius:settings.value("border/active_shadow",0);
-                color:settings.value("border/active_color","")
+            PropertyChanges {
+                target:fakeborder;
+                state:"ACTIVATED"
             }
-            PropertyChanges {target:faketitle.text;color:'black';}
-            PropertyChanges { target: faketitle.shadow;radius:10;}
             PropertyChanges {target:terminal.anchors;topMargin:18;}
         },
 
@@ -50,24 +46,26 @@ Item{
                 state:"DEACTIVATED"
             }
             PropertyChanges {
-                target:fakeborder.border.border;
-                width:1;
-                color:settings.value("border/deactive_color","")
+                target:faketitle;
+                state:"DEACTIVATED"
             }
-            PropertyChanges { 
-                target: fakeborder.shadow;
-                radius:settings.value("border/deactive_shadow",0);
-                color:settings.value("border/deactive_color","")
+            PropertyChanges {
+                target:fakeborder;
+                state:"DEACTIVATED"
             }
-            PropertyChanges {target:faketitle.text;color:'black';}
-            PropertyChanges { target: faketitle.shadow; radius:3;}
             PropertyChanges {target:terminal.anchors;topMargin:18;}
         },
 
         State {
             name: "MAXIMIZED_NOTITLE"
-            PropertyChanges {target:fakeborder.border.border;width:0;}
-            PropertyChanges {target:faketitle.text;color:'transparent';}
+            PropertyChanges {
+                target:faketitle;
+                state:"MAXIMIZED_NOTITLE"
+            }
+            PropertyChanges {
+                target:fakeborder;
+                state:"MAXIMIZED"
+            }
             PropertyChanges {target:terminal.anchors;topMargin:0;}
         },
 
@@ -75,56 +73,16 @@ Item{
             name: "MAXIMIZED"
             PropertyChanges {
                 target:background;
-                state:"DEACTIVATED"
+                state:"ACTIVATED"
             }
-            PropertyChanges {target:fakeborder.border.border;width:0;}
+            PropertyChanges {
+                target:faketitle;
+                state:"ACTIVATED"
+            }
+            PropertyChanges {
+                target:fakeborder;
+                state:"MAXIMIZED"
+            }
         }
     ]
-
-    transitions: [
-        Transition {
-            from: "DEACTIVATED"
-            to: "ACTIVATED"
-            ColorAnimation { target: fakeborder.border.border; 
-                duration:config.animation_duration
-            }
-            ColorAnimation { target: fakeborder.shadow; 
-                duration: config.animation_duration
-            }
-            ColorAnimation { target: faketitle.shadow; 
-                duration: config.animation_duration 
-            }
-            NumberAnimation {target:fakeborder.shadow;
-                properties: "radius";
-                duration:config.animation_duration 
-            }
-            NumberAnimation {target:faketitle.shadow;
-                properties: "radius";
-                duration:config.animation_duration 
-            }
-// easing.type: Easing.InOutQuad }
-        },
-        Transition {
-            from: "ACTIVATED"
-            to: "DEACTIVATED"
-            ColorAnimation { target: fakeborder.border.border; 
-                duration:config.animation_duration
-            }
-            ColorAnimation { target: fakeborder.shadow; 
-                duration:config.animation_duration
-            }
-            ColorAnimation { target: faketitle.shadow; 
-                duration:config.animation_duration 
-            }
-            NumberAnimation {target:fakeborder.shadow;
-                properties: "radius";duration: config.animation_duration
-            }
-            NumberAnimation {target:faketitle.shadow;
-                properties: "radius";duration: config.animation_duration
-            }
-            // easing.type: Easing.InOutQuad }
-        }
-    ]
-
-
 }
