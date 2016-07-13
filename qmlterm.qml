@@ -81,9 +81,6 @@ ApplicationWindow {
     FakeBorder{
         id:fakeborder
         config:config
-        border.border.width: config.frame_border
-        shadow.spread:config.shadow_spread 
-        shadow.visible:config.enable_border_shadow
     }
 
     FakeTitle{

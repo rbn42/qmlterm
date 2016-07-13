@@ -13,12 +13,8 @@ Item{
     Rectangle{
         id:border
         anchors.fill: parent
-        //anchors.topMargin:config.frame_border-1
-        //anchors.rightMargin:config.frame_border-1
-        //anchors.leftMargin:config.frame_border-1
-        //anchors.bottomMargin:config.frame_border-1
-        border.color: "black"
         color:'transparent'
+        visible:config.enable_border
     }
 
     DropShadow {
@@ -28,6 +24,8 @@ Item{
         samples: 17
         color: "black"
         source: border
+        visible:config.enable_border_shadow
+        spread:config.shadow_spread 
     }
 
     states: [
