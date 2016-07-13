@@ -10,8 +10,6 @@
 
 int main(int argc, char *argv[])
 {
-    qDebug() << "Hello world!";
-
     QString path_terminal(realpath(argv[0], NULL));
 
     QCommandLineParser parser;
@@ -40,7 +38,7 @@ int main(int argc, char *argv[])
 
     qsettings.beginGroup("env");
     QStringList keys = qsettings.childKeys();
-    qDebug() << keys;
+    //qDebug() << keys;
     foreach (const QString &key, keys)
     {
         QString value = qsettings.value(key).toString();
