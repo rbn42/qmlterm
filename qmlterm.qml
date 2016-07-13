@@ -24,11 +24,11 @@ ApplicationWindow {
 
     WindowState{
         id:state
+        background:background
     }
 
     onActiveChanged:{
         state.changestate(active,root.visibility)
-        background.state=state.state
     }
 
     onVisibilityChanged:{

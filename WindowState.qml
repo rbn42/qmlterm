@@ -2,6 +2,8 @@ import QtQuick 2.2
 
 Item{
 
+    property var background
+
     function changestate(_active,_visibility){
         if(_visibility==4){
             state="MAXIMIZED"
@@ -14,4 +16,31 @@ Item{
         }
     }
 
+    states: [
+
+        State {
+            name: "ACTIVATED"
+            PropertyChanges {
+                target:background;
+                state:"ACTIVATED"
+            }
+        },
+
+        State {
+            name: "DEACTIVATED"
+            PropertyChanges {
+                target:background;
+                state:"DEACTIVATED"
+            }
+        },
+
+        State {
+            name: "MAXIMIZED"
+            PropertyChanges {
+                target:background;
+                state:"DEACTIVATED"
+            }
+        }
+    ]
+ 
 }
