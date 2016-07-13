@@ -9,12 +9,10 @@ import "utils.js" as Utils
 ApplicationWindow {
 
     id:root
-
     visible: true
     width: config.window_width
     height: config.window_height
     title:mainsession.title
-
     color: 'transparent'
 
     Configuration{id:config}
@@ -22,6 +20,18 @@ ApplicationWindow {
     Background{
         id:background
         config:config
+    }
+
+    WindowState{
+        id:state
+    }
+
+    onActiveChanged:{
+        state.changestate(active,root.visibility)
+    }
+
+    onVisibilityChanged:{
+        state.changestate(active,visibility)
     }
 
     ContextMenu{
@@ -33,11 +43,8 @@ ApplicationWindow {
 
     function resize(ratio){
         Utils.resize(ratio,config,root)
-
         terminal.font.pointSize=Math.round(config.font_size*config.display_ratio);
-
         terminalshadow.resize()
-
     }
 
     MouseArea {
