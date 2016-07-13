@@ -6,7 +6,7 @@ Item{
     property var terminal
     property var faketitle
     property var fakeborder
-
+    property var background
 
     function changestate(_active,_visibility){
         if(_visibility==4){
@@ -14,31 +14,20 @@ Item{
         }else if(_visibility==5){
             state="MAXIMIZED" // "FULLSCREEN"
         }else if(_active){
-            state="ACTICATED"
+            state="ACTIVATED"
         }else{
             state="DEACTIVATED"
         }
     }
 
     states: [
+
         State {
-            name: "DEACTIVATED"
+            name: "ACTIVATED"
             PropertyChanges {
-                target:fakeborder.border.border;
-                width:1;
-                color:settings.value("border/deactive_color","")
+                target:background;
+                state:"ACTIVATED"
             }
-            PropertyChanges { 
-                target: fakeborder.shadow;
-                radius:settings.value("border/deactive_shadow",0);
-                color:settings.value("border/deactive_color","")
-            }
-            PropertyChanges {target:faketitle.text;color:'black';}
-            PropertyChanges { target: faketitle.shadow; radius:3;}
-            PropertyChanges {target:terminal.anchors;topMargin:18;}
-        },
-        State {
-            name: "ACTICATED"
             PropertyChanges {
                 target:fakeborder.border.border;
                 width:1;
@@ -53,14 +42,41 @@ Item{
             PropertyChanges { target: faketitle.shadow;radius:10;}
             PropertyChanges {target:terminal.anchors;topMargin:18;}
         },
+
+        State {
+            name: "DEACTIVATED"
+            PropertyChanges {
+                target:background;
+                state:"DEACTIVATED"
+            }
+            PropertyChanges {
+                target:fakeborder.border.border;
+                width:1;
+                color:settings.value("border/deactive_color","")
+            }
+            PropertyChanges { 
+                target: fakeborder.shadow;
+                radius:settings.value("border/deactive_shadow",0);
+                color:settings.value("border/deactive_color","")
+            }
+            PropertyChanges {target:faketitle.text;color:'black';}
+            PropertyChanges { target: faketitle.shadow; radius:3;}
+            PropertyChanges {target:terminal.anchors;topMargin:18;}
+        },
+
         State {
             name: "MAXIMIZED_NOTITLE"
             PropertyChanges {target:fakeborder.border.border;width:0;}
             PropertyChanges {target:faketitle.text;color:'transparent';}
             PropertyChanges {target:terminal.anchors;topMargin:0;}
         },
+
         State {
             name: "MAXIMIZED"
+            PropertyChanges {
+                target:background;
+                state:"DEACTIVATED"
+            }
             PropertyChanges {target:fakeborder.border.border;width:0;}
         }
     ]
@@ -68,7 +84,7 @@ Item{
     transitions: [
         Transition {
             from: "DEACTIVATED"
-            to: "ACTICATED"
+            to: "ACTIVATED"
             ColorAnimation { target: fakeborder.border.border; 
                 duration:config.animation_duration
             }
@@ -89,7 +105,7 @@ Item{
 // easing.type: Easing.InOutQuad }
         },
         Transition {
-            from: "ACTICATED"
+            from: "ACTIVATED"
             to: "DEACTIVATED"
             ColorAnimation { target: fakeborder.border.border; 
                 duration:config.animation_duration

@@ -32,11 +32,11 @@ ApplicationWindow {
         terminal:terminal
         faketitle:faketitle
         fakeborder:fakeborder
+        background:background
     }
 
     onActiveChanged:{
         state.changestate(active,root.visibility)
-        background.state=state.state
     }
 
     onVisibilityChanged:{
