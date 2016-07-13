@@ -18,14 +18,6 @@ ApplicationWindow {
     title:mainsession.title
     color: 'transparent'
 
-    Rectangle{
-        anchors.fill: parent
-        color: "cyan"
-        //ColorAnimation on color { to: "transparent"; duration: 500 }
-        NumberAnimation on opacity { to: 0; duration: 0 }
-        opacity:0.5
-    }
-
     Configuration{id:config}
 
     Background{
@@ -38,9 +30,7 @@ ApplicationWindow {
         config:config
         terminal:terminal
         faketitle:faketitle
-        titleshadow:titleshadow
         fakeborder:fakeborder
-        bordershadow:bordershadow
     }
 
     onActiveChanged:{
@@ -86,43 +76,20 @@ ApplicationWindow {
         onClicked: contextMenu.popup()  
     }
 
-    MouseArea {
-        anchors.fill: parent;
-        property variant clickPos: "1,1"
-        onPressed: {
-            clickPos  = Qt.point(mouse.x,mouse.y)
-        }
-        onPositionChanged: {
-            var delta = Qt.point(mouse.x-clickPos.x, mouse.y-clickPos.y)
-            root.x += delta.x;
-            root.y += delta.y;
-        }
-        onDoubleClicked:toggleMaximize()
-        
+    DragArea{root:root}
 
-
-    }
-
-    Rectangle{
+    FakeBorder{
         id:fakeborder
-        //anchors.topMargin:config.frame_border-1
-        //anchors.rightMargin:config.frame_border-1
-        //anchors.leftMargin:config.frame_border-1
-        //anchors.bottomMargin:config.frame_border-1
-        border.color: "black"
-        border.width: config.frame_border
-        anchors.fill: parent
-        color:'transparent'
+        border.border.width: config.frame_border
+        shadow.spread:config.shadow_spread 
+        shadow.visible:config.enable_border_shadow
     }
 
-    Text {
+    FakeTitle{
         id:faketitle
-        font.family:config.title_font 
-        horizontalAlignment:Text.AlignHCenter
-        anchors.fill: parent
-        text:mainsession.title
-        color: "black"
-        font.pixelSize: 18
+        text.font.family:config.title_font 
+        text.text:mainsession.title
+        shadow.spread:config.title_shadow_spread
     }
 
     Terminal{
@@ -151,26 +118,6 @@ ApplicationWindow {
         source: terminal
     }
     
-    DropShadow {
-        id:titleshadow
-        anchors.fill: faketitle //   radius: 15
-        samples: 17
-        color: "white"
-        source: faketitle
-        spread:config.title_shadow_spread
-    }
-
-    DropShadow {
-        id:bordershadow
-        anchors.fill: fakeborder
-       // radius: 5
-        samples: 17
-        color: "black"
-        source: fakeborder
-        spread:config.shadow_spread 
-        visible:config.enable_border_shadow
-
-    }
 
     onClosing:{
         console.log('close')

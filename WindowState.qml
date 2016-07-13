@@ -5,9 +5,7 @@ Item{
     property var config
     property var terminal
     property var faketitle
-    property var titleshadow
     property var fakeborder
-    property var bordershadow
 
 
     function changestate(_active,_visibility){
@@ -26,44 +24,44 @@ Item{
         State {
             name: "DEACTIVATED"
             PropertyChanges {
-                target:fakeborder.border;
+                target:fakeborder.border.border;
                 width:1;
                 color:config.border_color_deactive
             }
             PropertyChanges { 
-                target: bordershadow;
+                target: fakeborder.shadow;
                 radius:config.border_shadow_deactive;
                 color:config.border_color_deactive
             }
-            PropertyChanges {target:faketitle;color:'black';}
-            PropertyChanges { target: titleshadow; radius:3;}
+            PropertyChanges {target:faketitle.text;color:'black';}
+            PropertyChanges { target: faketitle.shadow; radius:3;}
             PropertyChanges {target:terminal.anchors;topMargin:18;}
         },
         State {
             name: "ACTICATED"
             PropertyChanges {
-                target:fakeborder.border;
+                target:fakeborder.border.border;
                 width:1;
                 color:config.border_color_active
             }
             PropertyChanges { 
-                target: bordershadow;
+                target: fakeborder.shadow;
                 radius:config.border_shadow_active;
                 color:config.border_color_active
             }
-            PropertyChanges {target:faketitle;color:'black';}
-            PropertyChanges { target: titleshadow;radius:10;}
+            PropertyChanges {target:faketitle.text;color:'black';}
+            PropertyChanges { target: faketitle.shadow;radius:10;}
             PropertyChanges {target:terminal.anchors;topMargin:18;}
         },
         State {
             name: "MAXIMIZED_NOTITLE"
-            PropertyChanges {target:fakeborder.border;width:0;}
-            PropertyChanges {target:faketitle;color:'transparent';}
+            PropertyChanges {target:fakeborder.border.border;width:0;}
+            PropertyChanges {target:faketitle.text;color:'transparent';}
             PropertyChanges {target:terminal.anchors;topMargin:0;}
         },
         State {
             name: "MAXIMIZED"
-            PropertyChanges {target:fakeborder.border;width:0;}
+            PropertyChanges {target:fakeborder.border.border;width:0;}
         }
     ]
 
@@ -71,20 +69,20 @@ Item{
         Transition {
             from: "DEACTIVATED"
             to: "ACTICATED"
-            ColorAnimation { target: fakeborder.border; 
+            ColorAnimation { target: fakeborder.border.border; 
                 duration:config.animation_duration
             }
-            ColorAnimation { target: bordershadow; 
+            ColorAnimation { target: fakeborder.shadow; 
                 duration: config.animation_duration
             }
-            ColorAnimation { target: titleshadow; 
+            ColorAnimation { target: faketitle.shadow; 
                 duration: config.animation_duration 
             }
-            NumberAnimation {target:bordershadow;
+            NumberAnimation {target:fakeborder.shadow;
                 properties: "radius";
                 duration:config.animation_duration 
             }
-            NumberAnimation {target:titleshadow;
+            NumberAnimation {target:faketitle.shadow;
                 properties: "radius";
                 duration:config.animation_duration 
             }
@@ -93,19 +91,19 @@ Item{
         Transition {
             from: "ACTICATED"
             to: "DEACTIVATED"
-            ColorAnimation { target: fakeborder.border; 
+            ColorAnimation { target: fakeborder.border.border; 
                 duration:config.animation_duration
             }
-            ColorAnimation { target: bordershadow; 
+            ColorAnimation { target: fakeborder.shadow; 
                 duration:config.animation_duration
             }
-            ColorAnimation { target: titleshadow; 
+            ColorAnimation { target: faketitle.shadow; 
                 duration:config.animation_duration 
             }
-            NumberAnimation {target:bordershadow;
+            NumberAnimation {target:fakeborder.shadow;
                 properties: "radius";duration: config.animation_duration
             }
-            NumberAnimation {target:titleshadow;
+            NumberAnimation {target:faketitle.shadow;
                 properties: "radius";duration: config.animation_duration
             }
             // easing.type: Easing.InOutQuad }
