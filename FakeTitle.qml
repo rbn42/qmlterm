@@ -10,20 +10,26 @@ Item{
 
     anchors.fill: parent
 
+
     Text {
         id:text
+
         horizontalAlignment:Text.AlignHCenter
         anchors.fill: parent
         color: "black"
         font.pixelSize: 18
+
+        font.family:config.title_font 
     }
 
     DropShadow {
         id:shadow
+
         anchors.fill:text 
         samples: 17
-        color: "white"
         source:text
+
+        spread:config.title_shadow_spread
     }
 
     states: [
@@ -31,13 +37,22 @@ Item{
         State {
             name: "ACTIVATED"
             PropertyChanges {target:text;color:'black';}
-            PropertyChanges { target:shadow;radius:10;}
+            PropertyChanges { 
+                target:shadow;
+                radius:10;
+                color: config.title_shadow_color_active
+            }
         },
 
         State {
             name: "DEACTIVATED"
             PropertyChanges {target:text;color:'black';}
-            PropertyChanges { target:shadow; radius:3;}
+            PropertyChanges { 
+                target:shadow;
+                radius:3;
+                color: config.title_shadow_color_deactive
+            
+            }
         },
 
         State {
