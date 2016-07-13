@@ -31,8 +31,8 @@ function resize(ratio, config, window_) {
 
     // Do not resize windows that have been resized manually.
     if (resize_window) {
-        root.width=config.width*config2scale;
-        root.height=config.height*config.scale;
+        window_.width=config.width*config2scale;
+        window_.height=config.height*config.scale;
         current_window_width = window_.width;
         current_window_height = window_.height;
     }
