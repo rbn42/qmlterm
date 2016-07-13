@@ -21,8 +21,7 @@ ApplicationWindow {
 
     Background{
         id:background
-        color: config.background_color
-        opacity:config.background_opacitiy
+        config:config
     }
 
     WindowState{
@@ -35,6 +34,7 @@ ApplicationWindow {
 
     onActiveChanged:{
         state.changestate(active,root.visibility)
+        background.state=state.state
     }
 
     onVisibilityChanged:{
