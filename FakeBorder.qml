@@ -24,8 +24,9 @@ Item{
         samples: 17
         color: "black"
         source: border
+
         visible:"true"==settings.value("border/shadow","true")
-        spread:config.shadow_spread 
+        spread:settings.value("border/shadow_spread",0.6)
     }
 
     states: [
