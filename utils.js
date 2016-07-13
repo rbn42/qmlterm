@@ -23,12 +23,9 @@ function resize(ratio, config, window_) {
         current_window_width = config.width;
         current_window_height = config.height;
     }
-    console.log(current_window_width)
-    console.log(config.window_)
     if (window_.width == current_window_width)
         if (window_.height == current_window_height)
             resize_window = true;
-    console.log(window_.width)
 
     config.scale*=ratio;
 
