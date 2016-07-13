@@ -9,7 +9,7 @@ export CMD1="normal!p"
 #save selection to temp file and quit
 export CMD2='map q "aygggg"bdG"ap:wq<CR>'
 
-#replace your terminal with `bash ~/bin/term_tiny`
+#replace `bash ~/bin/term_tiny` with your terminal. 
 bash ~/bin/term_tiny -e """
 vim $TEMP_FILE  \
     -c '$CMD1' \
