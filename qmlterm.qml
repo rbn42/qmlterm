@@ -31,6 +31,7 @@ ApplicationWindow {
     }
 
     color:'transparent' 
+
     Rectangle{
         anchors.fill: parent
         color: "cyan"
@@ -73,6 +74,14 @@ ApplicationWindow {
                 root.visibility='AutomaticVisibility'
             else
                 root.visibility= "Maximized"
+    }
+
+    function toggleFullscreen(){
+            console.log(root.visibility)
+            if(root.visibility==5)// "FullScreen")
+                root.visibility='AutomaticVisibility'
+            else
+                root.visibility= "FullScreen"
     }
 
     MouseArea {

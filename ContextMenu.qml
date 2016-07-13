@@ -65,6 +65,11 @@ Menu {
     }
 
     MenuItem {
+        text: qsTr('&Full Screen')
+        onTriggered: root.toggleFullscreen();
+    }
+
+    MenuItem {
         text: qsTr("&Quit")
         onTriggered:root.close() //Qt.quit() 
     }
