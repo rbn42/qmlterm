@@ -20,8 +20,6 @@ mkdir build
 cd build
 qmake ..
 make
-cd ..
-#cp ./qmldir ./build/QMLProcess
 
 #build
 cd "$ROOT"
@@ -29,8 +27,6 @@ mkdir build
 cd build
 qmake ..
 make
-#cp ../*.py ./
-#cp ../*.sh ./
 
 #test
 cd "$ROOT"
