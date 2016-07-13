@@ -17,8 +17,8 @@ Item{
         horizontalAlignment:Text.AlignHCenter
         anchors.fill: parent
         color: "black"
-        font.pixelSize: settings.value("title/font_size",18)
 
+        font.pixelSize: settings.value("title/font_size",18)
         font.family:settings.value("title/font","monospace")
     }
 
