@@ -9,9 +9,8 @@ import "utils.js" as Utils
 
 ApplicationWindow {
 
-    flags: Qt.FramelessWindowHint
-
     id:root
+    flags: Qt.FramelessWindowHint
     visible: true
     width: config.width
     height: config.height
@@ -24,8 +23,7 @@ ApplicationWindow {
 
     Background{
         id:background
-        color:settings.value("window/background_color","black") 
-        opacity:settings.value("window/background_opacitiy","1.0")
+        config:config
     }
 
     WindowState{
@@ -38,6 +36,7 @@ ApplicationWindow {
 
     onActiveChanged:{
         state.changestate(active,root.visibility)
+        background.state=state.state
     }
 
     onVisibilityChanged:{
