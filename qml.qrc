@@ -1,6 +1,15 @@
 <RCC>
     <qresource prefix="/">
+        <file>Background.qml</file>
+        <file>ContextMenu.qml</file>
+        <file>DragArea.qml</file>
+        <file>FakeBorder.qml</file>
+        <file>FakeTitle.qml</file>
         <file>qmlterm.qml</file>
+        <file>Session.qml</file>
+        <file>Terminal.qml</file>
+        <file>TerminalShadow.qml</file>
+        <file>WindowState.qml</file>
         <file>utils.js</file>
     </qresource>
 </RCC>

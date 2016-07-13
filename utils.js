@@ -13,3 +13,29 @@ function findFile(file, path_termianl) {
 function subhome(home, path) {
     return path;
 }
+
+var current_window_width
+var current_window_height
+
+function resize(ratio, config, window_) {
+    var resize_window = false;
+    if (!current_window_width) {
+        current_window_width = config.window_width;
+        current_window_height = config.window_height;
+    }
+    if (window_.width == current_window_width)
+        if (window_.height == current_window_height)
+            resize_window = true;
+
+    config.scale*=ratio;
+
+    // Do not resize windows that have been resized manually.
+    if (resize_window) {
+        root.width=config.width*config2scale;
+        root.height=config.height*config.scale;
+        current_window_width = window_.width;
+        current_window_height = window_.height;
+    }
+
+    return resize_window;
+}
