@@ -9,9 +9,8 @@ import "utils.js" as Utils
 
 ApplicationWindow {
 
-    flags: Qt.FramelessWindowHint
-
     id:root
+    flags: Qt.FramelessWindowHint
     visible: true
     width: config.window_width
     height: config.window_height
