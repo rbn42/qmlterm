@@ -2,7 +2,6 @@ import QtQuick 2.2
 
 Item{
 
-    property var config
     property var terminal
     property var faketitle
     property var fakeborder

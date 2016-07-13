@@ -28,7 +28,7 @@ ApplicationWindow {
 
     WindowState{
         id:state
-        config:config
+
         terminal:terminal
         faketitle:faketitle
         fakeborder:fakeborder
