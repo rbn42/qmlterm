@@ -19,7 +19,8 @@ ApplicationWindow {
 
     Background{
         id:background
-        config:config
+        color: config.background_color
+        opacity:config.background_opacitiy
     }
 
     WindowState{
@@ -55,7 +56,9 @@ ApplicationWindow {
 
     Terminal{
         id: terminal
-        config:config
+        font.family:config.font_family
+        font.pointSize: config.font_size
+        colorScheme:config.color_scheme
         root:root
         session:mainsession
         Keys.onPressed:if(event.key==Qt.Key_Menu)contextMenu.popup()
