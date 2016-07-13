@@ -5,5 +5,4 @@
 *.pyc
 ctags
 .tags
-Configuration.qml
 build
