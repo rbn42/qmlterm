@@ -29,6 +29,7 @@ Item{
         samples: 17
         source:text
 
+        visible:"true"==settings.value("title/shadow","true")
         spread:settings.value("title/shadow_spread",0.6)
     }
 
