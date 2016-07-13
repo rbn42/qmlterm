@@ -12,25 +12,11 @@ ApplicationWindow {
     flags: Qt.FramelessWindowHint
 
     id:root
-
     visible: true
     width: config.window_width
     height: config.window_height
     title:mainsession.title
-
-    function borderstate(_active,_visibility){
-        if(_visibility==4){// "Maximized")
-            bordershadow.state=config.maximized_state //"MAXIMIZED"
-        }else if(_visibility==5){// "Full Screen")
-            bordershadow.state=config.maximized_state //#"MAXIMIZED"
-        }else if(_active){
-            bordershadow.state="ACTICATED"
-        }else{
-            bordershadow.state="DEACTIVATED"
-        }
-    }
-
-    color:'transparent' 
+    color: 'transparent'
 
     Rectangle{
         anchors.fill: parent
@@ -40,18 +26,29 @@ ApplicationWindow {
         opacity:0.5
     }
 
-    onActiveChanged:{
-        borderstate(active,root.visibility)
-    }
-    onVisibilityChanged:{
-        borderstate(active,visibility)
-    }
-
     Configuration{id:config}
 
     Background{
         id:background
         config:config
+    }
+
+    WindowState{
+        id:state
+        config:config
+        terminal:terminal
+        faketitle:faketitle
+        titleshadow:titleshadow
+        fakeborder:fakeborder
+        bordershadow:bordershadow
+    }
+
+    onActiveChanged:{
+        state.changestate(active,root.visibility)
+    }
+
+    onVisibilityChanged:{
+        state.changestate(active,visibility)
     }
 
     ContextMenu{
@@ -63,7 +60,6 @@ ApplicationWindow {
 
     function resize(ratio){
         Utils.resize(ratio,config,root)
-
         terminal.font.pointSize=Math.round(config.font_size*config.display_ratio);
         terminalshadow.resize()
     }
@@ -174,95 +170,6 @@ ApplicationWindow {
         spread:config.shadow_spread 
         visible:config.enable_border_shadow
 
-        states: [
-            State {
-                name: "DEACTIVATED"
-                PropertyChanges {
-                    target:fakeborder.border;
-                    width:1;
-                    color:config.border_color_deactive
-                }
-                PropertyChanges { 
-                    target: bordershadow;
-                    radius:config.border_shadow_deactive;
-                    color:config.border_color_deactive
-                }
-                PropertyChanges {target:faketitle;color:'black';}
-                PropertyChanges { target: titleshadow; radius:3;}
-                PropertyChanges {target:terminal.anchors;topMargin:18;}
-            },
-            State {
-                name: "ACTICATED"
-                PropertyChanges {
-                    target:fakeborder.border;
-                    width:1;
-                    color:config.border_color_active
-                }
-                PropertyChanges { 
-                    target: bordershadow;
-                    radius:config.border_shadow_active;
-                    color:config.border_color_active
-                }
-                PropertyChanges {target:faketitle;color:'black';}
-                PropertyChanges { target: titleshadow;radius:10;}
-                PropertyChanges {target:terminal.anchors;topMargin:18;}
-            },
-            State {
-                name: "MAXIMIZED_NOTITLE"
-                PropertyChanges {target:fakeborder.border;width:0;}
-                PropertyChanges {target:faketitle;color:'transparent';}
-                PropertyChanges {target:terminal.anchors;topMargin:0;}
-            },
-            State {
-                name: "MAXIMIZED"
-                PropertyChanges {target:fakeborder.border;width:0;}
-            }
-        ]
-
-        transitions: [
-            Transition {
-                from: "DEACTIVATED"
-                to: "ACTICATED"
-                ColorAnimation { target: fakeborder.border; 
-                    duration:config.animation_duration
-                }
-                ColorAnimation { target: bordershadow; 
-                    duration: config.animation_duration
-                }
-                ColorAnimation { target: titleshadow; 
-                    duration: config.animation_duration 
-                }
-                NumberAnimation {target:bordershadow;
-                    properties: "radius";
-                    duration:config.animation_duration 
-                }
-                NumberAnimation {target:titleshadow;
-                    properties: "radius";
-                    duration:config.animation_duration 
-                }
-    // easing.type: Easing.InOutQuad }
-            },
-            Transition {
-                from: "ACTICATED"
-                to: "DEACTIVATED"
-                ColorAnimation { target: fakeborder.border; 
-                    duration:config.animation_duration
-                }
-                ColorAnimation { target: bordershadow; 
-                    duration:config.animation_duration
-                }
-                ColorAnimation { target: titleshadow; 
-                    duration:config.animation_duration 
-                }
-                NumberAnimation {target:bordershadow;
-                    properties: "radius";duration: config.animation_duration
-                }
-                NumberAnimation {target:titleshadow;
-                    properties: "radius";duration: config.animation_duration
-                }
-                // easing.type: Easing.InOutQuad }
-            }
-        ]
     }
 
     onClosing:{
