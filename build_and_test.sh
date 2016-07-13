@@ -1,12 +1,9 @@
 #!/bin/bash 
 
-mkdir build
-cd build
-qmake ..
-make
-cp ../*.py ./
-cp ../*.sh ./
+export ROOT=$(dirname "$0")
+export ROOT=`realpath "$ROOT"`
 
+#dependencies
 cd ~/git
 git clone https://github.com/rbn42/qmltermwidget.git
 cd ~/git/qmltermwidget
@@ -26,4 +23,16 @@ make
 cd ..
 cp ./qmldir ./build/QMLProcess
 
+#build
+cd "$ROOT"
+mkdir build
+cd build
+qmake ..
+make
+cp ../*.py ./
+cp ../*.sh ./
 
+#test
+cd "$ROOT"
+export QML2_IMPORT_PATH=~/git/QMLProcess/build:~/git/qmltermwidget/build
+./build/qmlterm -c ./config.sample.ini
