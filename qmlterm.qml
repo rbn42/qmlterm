@@ -9,9 +9,6 @@ import "utils.js" as Utils
 
 ApplicationWindow {
 
-    property var current_window_width
-    property var current_window_height
-
     id:root
 
     visible: true
