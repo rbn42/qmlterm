@@ -51,7 +51,6 @@ ApplicationWindow {
     }
 
     function resize(ratio){
-        console.log('resize')
         Utils.resize(ratio,config,root)
         terminal.font.pointSize=Math.round(config.font_size*config.scale);
         terminalshadow.resize()
