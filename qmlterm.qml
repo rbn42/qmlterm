@@ -32,11 +32,10 @@ ApplicationWindow {
     }
 
     function resize(ratio){
-        var resize_window=Utils.resize(ratio,config,root)
-
-        // Do not resize windows that have been resized manually.
+        Utils.resize(ratio,config,root)
 
         terminal.font.pointSize=Math.round(config.font_size*config.display_ratio);
+
         terminalshadow.resize()
 
     }

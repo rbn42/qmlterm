@@ -22,6 +22,7 @@ function resize(ratio, config, window_) {
 
     config.display_ratio *= ratio;
 
+    // Do not resize windows that have been resized manually.
     if (resize_window) {
         window_.width = config.window_width * config.display_ratio;
         window_.height = config.window_height * config.display_ratio;
