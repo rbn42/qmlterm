@@ -10,7 +10,7 @@ DropShadow {
     radius: config.shadow_radius
     samples: 17
     color: settings.value("font/shadow_color","black")
-    spread:config.shadow_spread
+    spread:parseFloat(settings.value("font/shadow_spread",0.4))
     visible:"true"==settings.value("font/shadow",true)
 
     function resize(){

@@ -7,7 +7,6 @@ Item {
     property var font_size:parseInt(settings.value("font/size",12))
     property var shadow_offset:parseInt(settings.value("font/shadow_offset",1))
     property var shadow_radius:parseInt(settings.value("font/shadow_radius",5))
-    property var shadow_spread:parseFloat(settings.value("font/shadow_spread",0.4))
     property var animation_duration:parseInt(settings.value("animation/duration",300))
 }
 
