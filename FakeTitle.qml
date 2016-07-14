@@ -45,7 +45,7 @@ Item{
             PropertyChanges {target:text;color:fontcolor;}
             PropertyChanges { 
                 target:shadow;
-                radius:10;
+                radius:settings.value("title/shadow_radius_active",10)
                 color: settings.value("title/shadow_color_active",'white')
             }
             PropertyChanges {target:terminal.anchors;topMargin:title_size;}
@@ -56,7 +56,7 @@ Item{
             PropertyChanges {target:text;color:fontcolor;}
             PropertyChanges { 
                 target:shadow;
-                radius:3;
+                radius:settings.value("title/shadow_radius_deactive",3)
                 color: settings.value("title/shadow_color_deactive",'white')
             
             }
