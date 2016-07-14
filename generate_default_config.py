@@ -28,15 +28,12 @@ config.optionxform = str
 def parseValue(v):
     if v in ("true", "false"):
         return v
-    try:
-        v = float(v)
-        return str(v)
-    except:
-        pass
-    if ',' in v:
-        return '"%s"' % v
-    return v
-
+    if type(v) == str:
+        if ',' in v:
+            return '"%s"' % v
+        else:
+            return v
+    return str(v)
 
 for key, value in settings:
     k1, k2 = key.split('/')
