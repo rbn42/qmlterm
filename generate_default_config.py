@@ -16,6 +16,7 @@ for path in qmlfiles:
 settings.sort()
 
 config = configparser.ConfigParser()
+config.optionxform = str
 
 
 def parseValue(value):
