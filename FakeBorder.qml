@@ -5,6 +5,9 @@ Item{
 
     property var config
 
+    property var active_color:settings.value("border/active_color","#8ff")
+    property var deactive_color:settings.value("border/deactive_color","#555")
+
     property alias border:border
     property alias shadow:shadow
 
@@ -25,7 +28,7 @@ Item{
         color: "black"
         source: border
 
-        visible:"true"==settings.value("border/shadow","true")
+        visible:"true"==settings.value("border/shadow","false")
         spread:settings.value("border/shadow_spread",0.6)
     }
 
@@ -36,12 +39,12 @@ Item{
             PropertyChanges {
                 target:border.border;
                 width:1;
-                color:settings.value("border/active_color","")
+                color:active_color
             }
             PropertyChanges { 
                 target: shadow;
-                radius:settings.value("border/active_shadow",0);
-                color:settings.value("border/active_color","")
+                radius:settings.value("border/active_shadow",5);
+                color:active_color
             }
         },
 
@@ -50,12 +53,12 @@ Item{
             PropertyChanges {
                 target:border.border;
                 width:1;
-                color:settings.value("border/deactive_color","")
+                color:deactive_color
             }
             PropertyChanges { 
                 target: shadow;
-                radius:settings.value("border/deactive_shadow",0);
-                color:settings.value("border/deactive_color","")
+                radius:settings.value("border/deactive_shadow",1);
+                color:deactive_color
             }
         },
 

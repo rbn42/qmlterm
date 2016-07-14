@@ -29,18 +29,15 @@ def parseValue(value):
     except:
         pass
     try:
-        v = int(v)
-        return str(v)
-    except:
-        pass
-    try:
         v = float(v)
         return str(v)
     except:
         pass
     if v in ("true", "false"):
         return v
-    return '"%s"' % v
+    if ',' in v:
+        return '"%s"' % v
+    return v
 
 
 for key, value in settings:

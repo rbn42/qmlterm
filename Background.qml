@@ -8,14 +8,14 @@ Rectangle{
 
     anchors.fill: parent
     color:settings.value("window/active_background_color","black") 
-    opacity:settings.value("window/active_background_opacitiy","1.0")
+    opacity:settings.value("window/active_background_opacitiy","0.0")
     states: [
         State {
             name: "ACTIVATED"
             PropertyChanges {
                 target:root
                 color:settings.value("window/active_background_color","black") 
-                opacity:settings.value("window/active_background_opacitiy","1.0")
+                opacity:settings.value("window/active_background_opacitiy","0.0")
             }
         },
         State {
@@ -23,7 +23,7 @@ Rectangle{
             PropertyChanges {
                 target:root
                 color:settings.value("window/deactive_background_color","black") 
-                opacity:settings.value("window/deactive_background_opacitiy","1.0")
+                opacity:settings.value("window/deactive_background_opacitiy","0.0")
             }
         }
     ]

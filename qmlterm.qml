@@ -95,9 +95,9 @@ ApplicationWindow {
 
     Terminal{
         id: terminal
-        font.family:settings.value("font/family","monaco")
+        font.family:settings.value("font/family","ubuntu mono")
         font.pointSize: config.font_size
-        colorScheme:settings.value("session/color_scheme","custom")
+        colorScheme:settings.value("session/color_scheme","Transparent ")
         //colorScheme:'BlackOnWhite'
         root:root
         session:mainsession
@@ -107,7 +107,7 @@ ApplicationWindow {
 
     Session{
         id: mainsession
-        shellProgram:settings.value("session/shell","fish")
+        shellProgram:settings.value("session/shell","bash")
     }
 
     Component.onCompleted:{
