@@ -4,6 +4,8 @@ import QtGraphicalEffects 1.0
 Item{
 
     property var config
+    property var terminal
+    property var title_size:parseInt(settings.value("title/size",18))
 
     property alias shadow:shadow
     property alias text:text
@@ -18,7 +20,7 @@ Item{
         anchors.fill: parent
         color: "black"
 
-        font.pixelSize: settings.value("title/font_size",18)
+        font.pixelSize:title_size 
         font.family:settings.value("title/font","monospace")
     }
 
@@ -43,6 +45,7 @@ Item{
                 radius:10;
                 color: settings.value("title/shadow_color_active",'white')
             }
+            PropertyChanges {target:terminal.anchors;topMargin:title_size;}
         },
 
         State {
@@ -54,11 +57,13 @@ Item{
                 color: settings.value("title/shadow_color_deactive",'white')
             
             }
+            PropertyChanges {target:terminal.anchors;topMargin:title_size;}
         },
 
         State {
             name: "MAXIMIZED_NOTITLE"
             PropertyChanges {target:text;color:'transparent';}
+            PropertyChanges {target:terminal.anchors;topMargin:0;}
         }
 
     ]

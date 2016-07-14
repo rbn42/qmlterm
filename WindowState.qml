@@ -2,7 +2,6 @@ import QtQuick 2.2
 
 Item{
 
-    property var terminal
     property var faketitle
     property var fakeborder
     property var background
@@ -35,7 +34,6 @@ Item{
                 target:fakeborder;
                 state:"ACTIVATED"
             }
-            PropertyChanges {target:terminal.anchors;topMargin:18;}
         },
 
         State {
@@ -52,7 +50,6 @@ Item{
                 target:fakeborder;
                 state:"DEACTIVATED"
             }
-            PropertyChanges {target:terminal.anchors;topMargin:18;}
         },
 
         State {
@@ -65,7 +62,6 @@ Item{
                 target:fakeborder;
                 state:"MAXIMIZED"
             }
-            PropertyChanges {target:terminal.anchors;topMargin:0;}
         },
 
         State {

@@ -29,7 +29,6 @@ ApplicationWindow {
     WindowState{
         id:state
 
-        terminal:terminal
         faketitle:faketitle
         fakeborder:fakeborder
         background:background
@@ -88,6 +87,7 @@ ApplicationWindow {
     FakeTitle{
         id:faketitle
         config:config
+        terminal:terminal
         text.text:mainsession.title
     }
 
