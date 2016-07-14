@@ -5,7 +5,9 @@ Item{
 
     property var config
     property var terminal
-    property var title_size:parseInt(settings.value("title/size",18))
+    property var enable:"true"==settings.value("title/enable","true")
+    property var title_size_:parseInt(settings.value("title/size",18))
+    property var title_size:enable?title_size_:0
 
     property alias shadow:shadow
     property alias text:text
@@ -20,6 +22,7 @@ Item{
         anchors.fill: parent
         color: "black"
 
+        visible:enable
         font.pixelSize:title_size 
         font.family:settings.value("title/font","monospace")
     }

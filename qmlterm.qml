@@ -9,8 +9,10 @@ import "utils.js" as Utils
 
 ApplicationWindow {
 
+    property var frameless:"true"==settings.value("window/frameless","true")
+
     id:root
-    flags: Qt.FramelessWindowHint
+    flags:frameless? Qt.FramelessWindowHint:Qt.Window
     visible: true
     width: config.width
     height: config.height
