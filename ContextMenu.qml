@@ -64,7 +64,7 @@ Menu {
     MenuItem {
         text: qsTr("Zoom Out")
         shortcut: StandardKey.ZoomOut // "Ctrl+-"
-        onTriggered: root.resize(0.9);
+        onTriggered: root.resize(1.0/1.1);
     }
 
     MenuItem {
