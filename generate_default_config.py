@@ -47,5 +47,8 @@ for key, value in settings:
     value = parseValue(value)
     config[k1][k2] = value
 
+config.add_section('env')
+config["env"]["PASS_THIS_VALUE"] = "TO_SESSION_ENVIRONMENT"
+
 with open(output_path, 'w') as configfile:
     config.write(configfile)
