@@ -8,6 +8,7 @@ Item{
     property var enable:"true"==settings.value("title/enable","true")
     property var title_size_:parseInt(settings.value("title/size",18))
     property var title_size:enable?title_size_:0
+    property var fontcolor:settings.value("title/color","black")
 
     property alias shadow:shadow
     property alias text:text
@@ -20,7 +21,6 @@ Item{
 
         horizontalAlignment:Text.AlignHCenter
         anchors.fill: parent
-        color: "black"
 
         visible:enable
         font.pixelSize:title_size 
@@ -42,7 +42,7 @@ Item{
 
         State {
             name: "ACTIVATED"
-            PropertyChanges {target:text;color:'black';}
+            PropertyChanges {target:text;color:fontcolor;}
             PropertyChanges { 
                 target:shadow;
                 radius:10;
@@ -53,7 +53,7 @@ Item{
 
         State {
             name: "DEACTIVATED"
-            PropertyChanges {target:text;color:'black';}
+            PropertyChanges {target:text;color:fontcolor;}
             PropertyChanges { 
                 target:shadow;
                 radius:3;
