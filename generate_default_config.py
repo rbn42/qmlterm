@@ -3,8 +3,9 @@
 import glob
 import re
 import configparser
+import sys
 
-output_path = '1.ini'
+output_path = sys.argv[1]
 qmlfiles = glob.glob('*.qml')
 
 settings = []
