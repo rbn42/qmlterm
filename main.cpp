@@ -10,7 +10,6 @@
 
 int main(int argc, char *argv[])
 {
-    QString path_terminal(realpath(argv[0], NULL));
 
     QCommandLineParser parser;
     parser.setApplicationDescription("Terminal");
@@ -27,28 +26,47 @@ int main(int argc, char *argv[])
             QCoreApplication::translate("main", "Load configuration file"),
             QCoreApplication::translate("main", "file")
         },
+        {   {"s", "size"},
+            QCoreApplication::translate("main", "Terminal window size. Example: 500x300"),
+            QCoreApplication::translate("main", "size")
+        },
     });
 
     QApplication app(argc, argv);
+    QQmlApplicationEngine engine;
     parser.process(app);
-    QSettings qsettings(parser.value("c"), QSettings::IniFormat);
+
     Settings settings(parser.value("c"), QSettings::IniFormat);
+    engine.rootContext()->setContextProperty("settings", &settings);
+    //Terminal Window Size
+    QString size = parser.value("s");
+    if (size.size() > 0)
+    {
+        int w=size.split("x")[0].toInt();
+        int h=size.split("x")[1].toInt();
+        settings.setValue("window/width",w);
+        settings.setValue("window/height",h);
+    }
 
-    QString command = parser.value("e");
 
+
+    //set environment variables.
+    QSettings qsettings(parser.value("c"), QSettings::IniFormat);
     qsettings.beginGroup("env");
     QStringList keys = qsettings.childKeys();
-    //qDebug() << keys;
     foreach (const QString &key, keys)
     {
         QString value = qsettings.value(key).toString();
-        setenv(key.toLatin1().data(), value.toLatin1().data(),1);
+        setenv(key.toLatin1().data(), value.toLatin1().data(), 1);
     }
 
-    QQmlApplicationEngine engine;
-    engine.rootContext()->setContextProperty("settings", &settings);
+
+    QString command = parser.value("e");
     engine.rootContext()->setContextProperty("command", command);
+
+    QString path_terminal(realpath(argv[0], NULL));
     engine.rootContext()->setContextProperty("path_terminal", path_terminal);
+
     engine.rootContext()->setContextProperty("path_configuration", parser.value("c") );
 
     engine.load(QUrl(QStringLiteral("qrc:/qmlterm.qml")));
