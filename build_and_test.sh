@@ -4,6 +4,7 @@ export ROOT=$(dirname "$0")
 export ROOT=`realpath "$ROOT"`
 
 #dependencies
+mkdir ~/git
 cd ~/git
 git clone https://github.com/rbn42/qmltermwidget.git
 cd ~/git/qmltermwidget
