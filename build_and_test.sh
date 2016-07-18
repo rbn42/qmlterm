@@ -1,5 +1,6 @@
 #!/bin/bash 
 
+#fetch dependencies
 git submodule update --init
 
 mkdir build
