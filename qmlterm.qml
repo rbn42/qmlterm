@@ -121,12 +121,11 @@ ApplicationWindow {
         anchors.fill: terminal
         source: terminal
     }
+
+    QuitingDialog{id:quiting_dialog}
     
-    onClosing:{
-        console.log('close')
-        if(mainsession.hasActiveProcess){
-            close.accepted=false
-        }
-    }
+    onClosing:
+        if(mainsession.hasActiveProcess)
+            close.accepted=quiting_dialog.quit()
     
 }
