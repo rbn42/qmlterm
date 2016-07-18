@@ -11,6 +11,7 @@
         <file>TerminalShadow.qml</file>
         <file>WindowState.qml</file>
         <file>Configuration.qml</file>
+        <file>QuitingDialog.qml</file>
         <file>utils.js</file>
     </qresource>
 </RCC>
