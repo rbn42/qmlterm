@@ -15,6 +15,8 @@ MessageDialog {
     }
 
     function quit(){
+        if("true"!=settings.value("prompt/quiting","true"))
+            return false
         if(quit_accepted)
             return true
         quiting_dialog.open()
