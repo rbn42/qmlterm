@@ -1,0 +1,7 @@
+[submodule "qmltermwidget"]
+	path = qmltermwidget
+	url = https://github.com/rbn42/qmltermwidget.git
+	branch = qmlterm
+[submodule "QMLProcess"]
+	path = QMLProcess
+	url = https://github.com/rbn42/QMLProcess.git
