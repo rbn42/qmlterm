@@ -43,17 +43,17 @@ Menu {
         shortcut: "Ctrl+Shift+V"
     }
 
-    MenuItem {
-        text: qsTr('Copy Screen To &Vim')
-        onTriggered:{
-            //Copy the screen to clipboard
-            terminal.copyScreenClipboard();
-
-            launcher.launch('bash',[
-                Utils.findFile('select_from_screen.sh',path_terminal),
-            ]);
-        }
-    }
+//    MenuItem {
+//        text: qsTr('Copy Screen To &Vim')
+//        onTriggered:{
+//            //Copy the screen to clipboard
+//            terminal.copyScreenClipboard();
+//
+//            launcher.launch('bash',[
+//                Utils.findFile('select_from_screen.sh',path_terminal),
+//            ]);
+//        }
+//    }
 
     MenuItem {
         text: qsTr("Zoom &In")
