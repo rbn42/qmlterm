@@ -14,9 +14,15 @@ DropShadow {
     visible:"true"==settings.value("font/shadow",true)
 
     function resize(){
-        horizontalOffset=Math.round(config.shadow_offset*config.scale)
-        verticalOffset=Math.round(config.shadow_offset*config.scale)
-        radius=Math.round(config.shadow_radius*config.scale)
+        var scale=config.scale
+        scale=scale/1.2
+        scale=Math.sqrt(scale)
+        scale=scale*1.2
+
+        horizontalOffset=Math.round(config.shadow_offset*scale)
+        verticalOffset=Math.round(config.shadow_offset*scale)
+
+        radius=Math.round(config.shadow_radius*scale)
     }
 }
 
