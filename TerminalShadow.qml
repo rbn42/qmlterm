@@ -11,7 +11,7 @@ DropShadow {
     samples: 17
     color: settings.value("font/shadow_color","black")
     spread:parseFloat(settings.value("font/shadow_spread",0.4))
-    visible:"true"==settings.value("font/shadow",true)
+    visible:"true"==settings.value("font/shadow","true")
 
     function resize(){
         var scale=config.scale

@@ -16,9 +16,6 @@ Menu {
         id:openterminal
         text: qsTr('&Open Terminal')
         onTriggered:{
-            console.log(session.foregroundProcessName)
-            console.log(session.currentDir)
-
             launcher.launch('python',[
                 Utils.findFile('open_terminal.py',path_terminal),
                 path_terminal,
@@ -26,21 +23,19 @@ Menu {
                 session.currentDir,
             ]);
         }
-        //shortcut:StandardKey.New // "Ctrl+T"
+        shortcut: settings.value("shortcut/newwidonw","")
     }
 
     MenuItem {
         text: qsTr('&Copy')
         onTriggered: terminal.copyClipboard();
-        //shortcut:StandardKey.Copy  // "Ctrl+C"
-        shortcut: "Ctrl+Shift+C"
+        shortcut: settings.value("shortcut/copy","Ctrl+Shift+C")
     }
 
     MenuItem {
         text: qsTr('&Paste')
         onTriggered: terminal.pasteClipboard();
-        //shortcut:StandardKey.Paste // "Ctrl+V"
-        shortcut: "Ctrl+Shift+V"
+        shortcut: settings.value("shortcut/paste","Ctrl+Shift+V")
     }
 
     MenuItem {
@@ -58,13 +53,13 @@ Menu {
 
     MenuItem {
         text: qsTr("Zoom &In")
-        shortcut: StandardKey.ZoomIn // "Ctrl++"
+        shortcut: settings.value("shortcut/zoomin","Ctrl++")
         onTriggered: root.resize(1.1)
     }
 
     MenuItem {
         text: qsTr("Zoom Out")
-        shortcut: StandardKey.ZoomOut // "Ctrl+-"
+        shortcut: settings.value("shortcut/zoomout","Ctrl+-")
         onTriggered: root.resize(1.0/1.1);
     }
 
@@ -85,7 +80,8 @@ Menu {
 
     MenuItem {
         text: qsTr("&Quit")
-        onTriggered:root.close() //Qt.quit() 
+        onTriggered:root.close()  
+        shortcut: settings.value("shortcut/quit","")
     }
 
 }

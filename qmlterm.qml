@@ -97,7 +97,7 @@ ApplicationWindow {
         id: terminal
         font.family:settings.value("font/family","ubuntu mono")
         font.pointSize: config.font_size
-        colorScheme:settings.value("session/color_scheme","Transparent ")
+        colorScheme:settings.value("session/color_scheme","Transparent")
         //colorScheme:'BlackOnWhite'
         root:root
         session:mainsession
