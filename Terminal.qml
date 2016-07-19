@@ -23,14 +23,7 @@ QMLTermWidget {
         session.startShellProgram();
     }
 
-    QMLTermScrollbar {
+    Scrollbar{
         terminal: terminal
-        width: 1
-        Rectangle {
-            color:"#000"
-            opacity: 1.0
-            radius:  0.0
-            anchors.fill: parent
-        }
     }
 }

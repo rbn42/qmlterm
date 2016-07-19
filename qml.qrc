@@ -12,6 +12,7 @@
         <file>WindowState.qml</file>
         <file>Configuration.qml</file>
         <file>QuitingDialog.qml</file>
+        <file>Scrollbar.qml</file>
         <file>utils.js</file>
     </qresource>
 </RCC>

@@ -101,6 +101,7 @@ ApplicationWindow {
         Keys.onPressed:if(event.key==Qt.Key_Menu)contextMenu.popup()
     }
 
+
     Session{
         id: mainsession
         shellProgram:settings.value("session/shell","bash")
