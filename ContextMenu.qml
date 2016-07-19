@@ -45,6 +45,7 @@ Menu {
 
     MenuItem {
         text: qsTr('Copy Screen To &Vim')
+        visible:"true"==settings.value("menu/copyscreen","false")
         onTriggered:{
             //Copy the screen to clipboard
             terminal.copyScreenClipboard();

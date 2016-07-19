@@ -48,8 +48,6 @@ int main(int argc, char *argv[])
         settings.setValue("window/height",h);
     }
 
-
-
     //set environment variables.
     QSettings qsettings(parser.value("c"), QSettings::IniFormat);
     qsettings.beginGroup("env");
@@ -59,7 +57,6 @@ int main(int argc, char *argv[])
         QString value = qsettings.value(key).toString();
         setenv(key.toLatin1().data(), value.toLatin1().data(), 1);
     }
-
 
     QString command = parser.value("e");
     engine.rootContext()->setContextProperty("command", command);
@@ -72,12 +69,4 @@ int main(int argc, char *argv[])
     engine.load(QUrl(QStringLiteral("qrc:/qmlterm.qml")));
 
     return app.exec();
-}
-
-const char* convert_qstr(const QString &str)
-{
-    QString str1 = "Test";
-    QByteArray ba = str1.toLatin1();
-    const char *c_str2 = ba.data();
-    return c_str2;
 }
