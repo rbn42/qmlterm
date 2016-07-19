@@ -19,9 +19,7 @@ ApplicationWindow {
     title:mainsession.title
     color: 'transparent'
 
-    Configuration {
-        id:config
-    }
+    Configuration {id:config}
 
     Background{
         id:background
@@ -36,13 +34,12 @@ ApplicationWindow {
         background:background
     }
 
-    onActiveChanged:{
-        state.changestate(active,root.visibility)
-    }
+    onActiveChanged:state.changestate(active,root.visibility)
 
-    onVisibilityChanged:{
-        state.changestate(active,visibility)
-    }
+    onVisibilityChanged:state.changestate(active,visibility)
+
+    onTitleChanged:faketitle.text.text=title
+
 
     ContextMenu{
         id: contextMenu
@@ -102,7 +99,6 @@ ApplicationWindow {
         root:root
         session:mainsession
         Keys.onPressed:if(event.key==Qt.Key_Menu)contextMenu.popup()
-        anchors.topMargin:18
     }
 
     Session{

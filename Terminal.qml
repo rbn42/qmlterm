@@ -5,11 +5,6 @@ QMLTermWidget {
 
     property var root
 
-    function setTitle(title){
-        //root.title=title
-        //faketitle.text=title
-    }
-
     id: terminal
 
     anchors.fill: parent
@@ -18,28 +13,24 @@ QMLTermWidget {
     enableBold:true
     blinkingCursor:true
     antialiasText:true
-    Component.onCompleted:{
 
+    Component.onCompleted:{
         resize(1.0)
         if(command.length>0){
-            setTitle(command)
+            root.title=command
             session.shellProgramArgs=['-c',command]
         }
-
         session.startShellProgram();
-
     }
 
     QMLTermScrollbar {
         terminal: terminal
-        width: 20
+        width: 1
         Rectangle {
-            opacity: 0.4
-            anchors.margins: 5
-            radius: width * 0.5
+            color:"#000"
+            opacity: 1.0
+            radius:  0.0
             anchors.fill: parent
         }
     }
-
 }
-
