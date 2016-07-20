@@ -73,7 +73,6 @@ ApplicationWindow {
         onClicked: contextMenu.popup()  
     }
 
-    DragArea{root:root}
 
     FakeBorder{
         id:fakeborder
@@ -83,18 +82,36 @@ ApplicationWindow {
     FakeTitle{
         id:faketitle
         config:config
-        terminal:terminal
+        fakewindow:fakewindow
         text.text:mainsession.title
+        DragArea{root:root}
     }
 
-    Terminal{
-        id: terminal
-        font.family:settings.value("font/family","ubuntu mono, monospace")
-        font.pointSize: config.font_size
-        colorScheme:settings.value("session/color_scheme","Transparent")
-        //colorScheme:'BlackOnWhite'
-        session:mainsession
-        Keys.onPressed:if(event.key==Qt.Key_Menu)contextMenu.popup()
+    Item{
+        id:fakewindow
+        anchors.fill: parent
+        visible:true
+
+        Terminal{
+            id: terminal
+            font.family:settings.value("font/family","ubuntu mono, monospace")
+            font.pointSize: config.font_size
+            colorScheme:settings.value("session/color_scheme","Transparent")
+            //colorScheme:'BlackOnWhite'
+            session:mainsession
+            Keys.onPressed:if(event.key==Qt.Key_Menu)contextMenu.popup()
+        }
+
+        TerminalShadow {
+            id:terminalshadow
+            config:config
+            anchors.fill: terminal
+            source: terminal
+        }
+
+        Scrollbar{
+            terminal: terminal
+        }
     }
 
 
@@ -106,13 +123,6 @@ ApplicationWindow {
     Component.onCompleted:{
         resize(1.0)
         terminal.forceActiveFocus();
-    }
-    
-    TerminalShadow {
-        id:terminalshadow
-        config:config
-        anchors.fill: terminal
-        source: terminal
     }
 
     QuitingDialog{id:quiting_dialog}

@@ -4,7 +4,7 @@ import QtGraphicalEffects 1.0
 Item{
 
     property var config
-    property var terminal
+    property var fakewindow
     property var enable:"true"==settings.value("title/enable","true")
     property var title_size_:parseInt(settings.value("title/size",18))
     property var title_size:enable?title_size_:0
@@ -48,7 +48,7 @@ Item{
                 radius:settings.value("title/shadow_radius_active",10)
                 color: settings.value("title/shadow_color_active",'white')
             }
-            PropertyChanges {target:terminal.anchors;topMargin:title_size;}
+            PropertyChanges {target:fakewindow.anchors;topMargin:title_size;}
         },
 
         State {
@@ -60,13 +60,13 @@ Item{
                 color: settings.value("title/shadow_color_deactive",'white')
             
             }
-            PropertyChanges {target:terminal.anchors;topMargin:title_size;}
+            PropertyChanges {target:fakewindow.anchors;topMargin:title_size;}
         },
 
         State {
             name: "MAXIMIZED_NOTITLE"
             PropertyChanges {target:text;color:'transparent';}
-            PropertyChanges {target:terminal.anchors;topMargin:0;}
+            PropertyChanges {target:fakewindow.anchors;topMargin:0;}
         }
 
     ]

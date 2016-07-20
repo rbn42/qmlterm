@@ -3,8 +3,6 @@ import QMLTermWidget 1.0
 
 QMLTermWidget {
 
-    id: terminal
-
     anchors.fill: parent
     onTerminalUsesMouseChanged: console.log(terminalUsesMouse);
     onTerminalSizeChanged: console.log(terminalSize);
@@ -17,9 +15,5 @@ QMLTermWidget {
         if(command.length>0)
             session.shellProgramArgs=['-c',command]
         session.startShellProgram();
-    }
-
-    Scrollbar{
-        terminal: terminal
     }
 }
