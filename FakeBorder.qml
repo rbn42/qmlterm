@@ -7,6 +7,7 @@ Item{
 
     property var active_color:settings.value("border/active_color","#8ff")
     property var deactive_color:settings.value("border/deactive_color","#555")
+    property var border_width:settings.value("border/width",1)
 
     property alias border:border
     property alias shadow:shadow
@@ -38,7 +39,7 @@ Item{
             name: "ACTIVATED"
             PropertyChanges {
                 target:border.border;
-                width:1;
+                width:border_width;
                 color:active_color
             }
             PropertyChanges { 
@@ -52,7 +53,7 @@ Item{
             name: "DEACTIVATED"
             PropertyChanges {
                 target:border.border;
-                width:1;
+                width:border_width;
                 color:deactive_color
             }
             PropertyChanges { 
