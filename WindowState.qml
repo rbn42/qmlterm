@@ -5,6 +5,7 @@ Item{
     property var faketitle
     property var fakeborder
     property var background
+    property var scrollbar
 
     function changestate(_active,_visibility){
         if(_visibility==4){
@@ -34,6 +35,10 @@ Item{
                 target:fakeborder;
                 state:"ACTIVATED"
             }
+            PropertyChanges {
+                target:scrollbar;
+                state:"ACTIVATED"
+            }
         },
 
         State {
@@ -50,6 +55,10 @@ Item{
                 target:fakeborder;
                 state:"DEACTIVATED"
             }
+            PropertyChanges {
+                target:scrollbar;
+                state:"DEACTIVATED"
+            }
         },
 
         State {
@@ -61,6 +70,10 @@ Item{
             PropertyChanges {
                 target:fakeborder;
                 state:"MAXIMIZED"
+            }
+            PropertyChanges {
+                target:scrollbar;
+                state:"ACTIVATED"
             }
         },
 
@@ -77,6 +90,10 @@ Item{
             PropertyChanges {
                 target:fakeborder;
                 state:"MAXIMIZED"
+            }
+            PropertyChanges {
+                target:scrollbar;
+                state:"ACTIVATED"
             }
         }
     ]

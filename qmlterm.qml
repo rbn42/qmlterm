@@ -32,6 +32,7 @@ ApplicationWindow {
         faketitle:faketitle
         fakeborder:fakeborder
         background:background
+        scrollbar:scrollbar
     }
 
     onActiveChanged:state.changestate(active,root.visibility)
@@ -110,6 +111,7 @@ ApplicationWindow {
         }
 
         Scrollbar{
+            id:scrollbar
             terminal: terminal
         }
     }
