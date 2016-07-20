@@ -3,10 +3,6 @@ import QMLTermWidget 1.0
 
 QMLTermSession{
 
-    /*historySize*/
-/*    shellProgram:config.shell*/
-    //shellProgramArgs:['--rcfile','~/apps/qmlterm/bashrc']
-    /*title*/
     initialWorkingDirectory: "$PWD"
 
     onMatchFound: {
