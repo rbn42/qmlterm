@@ -19,7 +19,7 @@ MessageDialog {
             return false
         if(quit_accepted)
             return true
-        quiting_dialog.open()
+        dialog.open()
         return false
     }
 }
