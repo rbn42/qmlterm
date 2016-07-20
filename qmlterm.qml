@@ -38,9 +38,6 @@ ApplicationWindow {
 
     onVisibilityChanged:state.changestate(active,visibility)
 
-    onTitleChanged:faketitle.text.text=title
-
-
     ContextMenu{
         id: contextMenu
         session:mainsession
@@ -96,7 +93,6 @@ ApplicationWindow {
         font.pointSize: config.font_size
         colorScheme:settings.value("session/color_scheme","Transparent")
         //colorScheme:'BlackOnWhite'
-        root:root
         session:mainsession
         Keys.onPressed:if(event.key==Qt.Key_Menu)contextMenu.popup()
     }

@@ -3,8 +3,6 @@ import QMLTermWidget 1.0
 
 QMLTermWidget {
 
-    property var root
-
     id: terminal
 
     anchors.fill: parent
@@ -16,10 +14,8 @@ QMLTermWidget {
 
     Component.onCompleted:{
         resize(1.0)
-        if(command.length>0){
-            root.title=command
+        if(command.length>0)
             session.shellProgramArgs=['-c',command]
-        }
         session.startShellProgram();
     }
 
