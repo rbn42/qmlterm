@@ -1,14 +1,14 @@
+#include "settings.h"
 #include <QApplication>
+#include <QCommandLineParser>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include <QtDebug>
-#include <QCommandLineParser>
-#include <QSettings>
 #include <QQmlContext>
-#include "settings.h"
+#include <QSettings>
+#include <QtDebug>
 #include <stdlib.h>
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
 
     QCommandLineParser parser;
@@ -17,20 +17,17 @@ int main(int argc, char *argv[])
     parser.addVersionOption();
 
     parser.addOptions(
-    {
-        {   {"e", "command"},
-            QCoreApplication::translate("main", "Execute commands."),
-            QCoreApplication::translate("main", "command")
-        },
-        {   {"c", "config"},
-            QCoreApplication::translate("main", "Load configuration file"),
-            QCoreApplication::translate("main", "file")
-        },
-        {   {"s", "size"},
-            QCoreApplication::translate("main", "Terminal window size. Example: 500x300"),
-            QCoreApplication::translate("main", "size")
-        },
-    });
+        {
+            { { "e", "command" },
+                QCoreApplication::translate("main", "Execute commands."),
+                QCoreApplication::translate("main", "command") },
+            { { "c", "config" },
+                QCoreApplication::translate("main", "Load configuration file"),
+                QCoreApplication::translate("main", "file") },
+            { { "s", "size" },
+                QCoreApplication::translate("main", "Terminal window size. Example: 500x300"),
+                QCoreApplication::translate("main", "size") },
+        });
 
     QApplication app(argc, argv);
     QQmlApplicationEngine engine;
@@ -40,20 +37,18 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("settings", &settings);
     //Terminal Window Size
     QString size = parser.value("s");
-    if (size.size() > 0)
-    {
-        int w=size.split("x")[0].toInt();
-        int h=size.split("x")[1].toInt();
-        settings.setValue("window/width",w);
-        settings.setValue("window/height",h);
+    if (size.size() > 0) {
+        int w = size.split("x")[0].toInt();
+        int h = size.split("x")[1].toInt();
+        settings.setValue("window/width", w);
+        settings.setValue("window/height", h);
     }
 
     //set environment variables.
     QSettings qsettings(parser.value("c"), QSettings::IniFormat);
     qsettings.beginGroup("env");
     QStringList keys = qsettings.childKeys();
-    foreach (const QString &key, keys)
-    {
+    foreach (const QString& key, keys) {
         QString value = qsettings.value(key).toString();
         setenv(key.toLatin1().data(), value.toLatin1().data(), 1);
     }
@@ -64,7 +59,7 @@ int main(int argc, char *argv[])
     QString path_terminal(realpath(argv[0], NULL));
     engine.rootContext()->setContextProperty("path_terminal", path_terminal);
 
-    engine.rootContext()->setContextProperty("path_configuration", parser.value("c") );
+    engine.rootContext()->setContextProperty("path_configuration", parser.value("c"));
 
     engine.load(QUrl(QStringLiteral("qrc:/qmlterm.qml")));
 
