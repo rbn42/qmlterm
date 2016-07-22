@@ -1,8 +1,8 @@
 TEMPLATE = app
 
 QT += qml quick widgets
+TARGET=qmlterm
 CONFIG += c++11
-
 
 HEADERS += settings.h
 SOURCES += main.cpp settings.cpp
@@ -19,3 +19,10 @@ QML_IMPORT_PATH =
 
 # Default rules for deployment.
 #include(deployment.pri)
+
+#########################################
+##              INTALLS
+#########################################
+#not yet ready 
+target.path += /usr/bin/
+INSTALLS += target
