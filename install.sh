@@ -3,7 +3,7 @@
 #fetch dependencies
 git submodule update --init
 
-#build dependencies
+#build and install dependencies
 mkdir ./qmltermwidget/build
 cd ./qmltermwidget/build
 qmake ..
@@ -18,7 +18,7 @@ make
 sudo make install
 cd ../..
 
-#build
+#build and install
 mkdir build
 cd build 
 qmake ..
