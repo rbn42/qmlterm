@@ -18,12 +18,10 @@ Menu {
         shortcut: settings.value("shortcut/newwidonw","")
 
         onTriggered:{
-            launcher.launch('python',[
-                Utils.findFile('open_terminal.py',path_terminal),
-                path_terminal,
+            launcher.launch(path_terminal,[
+                "-c",
                 path_configuration,
-                session.currentDir,
-            ]);
+            ],session.currentDir);
         }
     }
 

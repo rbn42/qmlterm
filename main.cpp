@@ -1,6 +1,7 @@
 #include "settings.h"
 #include <QApplication>
 #include <QCommandLineParser>
+#include <QDir>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
@@ -56,10 +57,18 @@ int main(int argc, char* argv[])
     QString command = parser.value("e");
     engine.rootContext()->setContextProperty("command", command);
 
+    qDebug() << "argv 0" << argv[0];
+
     QString path_terminal(realpath(argv[0], NULL));
+    if (path_terminal.length() < 1)
+        path_terminal=QString(argv[0]);
+    qDebug() << "path_terminal" << path_terminal;
+
     engine.rootContext()->setContextProperty("path_terminal", path_terminal);
 
     engine.rootContext()->setContextProperty("path_configuration", parser.value("c"));
+
+    engine.rootContext()->setContextProperty("current_path", QDir::currentPath());
 
     engine.load(QUrl(QStringLiteral("qrc:/qmlterm.qml")));
 

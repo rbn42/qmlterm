@@ -3,7 +3,7 @@ import QMLTermWidget 1.0
 
 QMLTermSession{
 
-    initialWorkingDirectory: "$PWD"
+    initialWorkingDirectory:current_path // "$PWD"
 
     onMatchFound: {
         console.log("found at: %1 %2 %3 %4".arg(startColumn).arg(startLine).arg(endColumn).arg(endLine));

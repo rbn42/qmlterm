@@ -23,6 +23,5 @@ QML_IMPORT_PATH =
 #########################################
 ##              INTALLS
 #########################################
-#not yet ready 
 target.path += /usr/bin/
 INSTALLS += target
