@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
 
     QString path_terminal(realpath(argv[0], NULL));
     if (path_terminal.length() < 1)
-        path_terminal=QString(argv[0]);
+        path_terminal = QString(argv[0]);
     qDebug() << "path_terminal" << path_terminal;
 
     engine.rootContext()->setContextProperty("path_terminal", path_terminal);
