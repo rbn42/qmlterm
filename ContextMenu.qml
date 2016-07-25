@@ -32,7 +32,7 @@ Menu {
         visible:"true"==settings.value("menu/filemanager","true")
 
         onTriggered:{
-            var fm=settings.value("shortcut/filemanager","xdg-open")
+            var fm=settings.value("system/filemanager","xdg-open")
             launcher.launch(fm,[
                 session.currentDir,
             ],session.currentDir);
