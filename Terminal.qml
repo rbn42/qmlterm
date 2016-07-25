@@ -5,6 +5,9 @@ QMLTermWidget {
 
     anchors.fill: parent
     anchors.leftMargin:-1
+    anchors.rightMargin:-1
+    anchors.bottomMargin:-1
+    anchors.topMargin:-1
     onTerminalUsesMouseChanged: console.log(terminalUsesMouse);
     onTerminalSizeChanged: console.log(terminalSize);
     enableBold:true
