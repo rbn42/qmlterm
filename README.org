@@ -1,4 +1,15 @@
 A terminal simulator with font shadow based on [[//github.com/Swordfish90/qmltermwidget][qmltermwidget]]. I did some dirty hack, because qmltermwidget does not support transparency background currently.
 
+* Dependencies
+** Ubuntu
+ #+BEGIN_EXAMPLE
+sudo apt-get install build-essential qmlscene qt5-qmake qt5-default qtdeclarative5-dev qtdeclarative5-controls-plugin qtdeclarative5-qtquick2-plugin libqt5qml-graphicaleffects qtdeclarative5-dialogs-plugin qtdeclarative5-localstorage-plugin qtdeclarative5-window-plugin -y
+ #+END_EXAMPLE
+** Arch Linux
+ #+BEGIN_EXAMPLE
+sudo pacman -S qt5-base qt5-declarative qt5-quickcontrols qt5-graphicaleffects
+ #+END_EXAMPLE
 * Build and Test
-See [[dependencies.sh]] and [[build_and_test.sh]]
+See [[build_and_test.sh]]
+* Install
+See [[install.sh][install.sh]]
