@@ -26,6 +26,20 @@ Menu {
     }
 
     MenuItem {
+        id:filemanager
+        text: qsTr('Open File Manger')
+        shortcut: settings.value("shortcut/filemanager","")
+        visible:"true"==settings.value("menu/filemanager","true")
+
+        onTriggered:{
+            var fm=settings.value("shortcut/filemanager","xdg-open")
+            launcher.launch(fm,[
+                session.currentDir,
+            ],session.currentDir);
+        }
+    }
+
+    MenuItem {
         text: qsTr('&Copy')
         shortcut: settings.value("shortcut/copy","Ctrl+Shift+C")
 
