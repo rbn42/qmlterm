@@ -64,10 +64,12 @@ int main(int argc, char* argv[])
         path_terminal = QString(argv[0]);
     qDebug() << "path_terminal" << path_terminal;
 
+    QFileInfo fi(parser.value("c"));
+    QString path_configuration = fi.absoluteFilePath();
+    qDebug() << "path_configuration" << path_configuration;
+
     engine.rootContext()->setContextProperty("path_terminal", path_terminal);
-
-    engine.rootContext()->setContextProperty("path_configuration", parser.value("c"));
-
+    engine.rootContext()->setContextProperty("path_configuration", path_configuration);
     engine.rootContext()->setContextProperty("current_path", QDir::currentPath());
 
     engine.load(QUrl(QStringLiteral("qrc:/qmlterm.qml")));
