@@ -3,7 +3,7 @@ import QMLTermWidget 1.0
 
 QMLTermWidget {
 
-    property var terminal_margin:settings.value("window/content_margin",-1)
+    property var terminal_margin:settings.value("window/content_margin",1)-1
 
     anchors.fill: parent
     anchors.leftMargin:terminal_margin
