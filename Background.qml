@@ -19,7 +19,6 @@ Rectangle{
     id:root
 
     anchors.fill: parent
-    //color:active_color 
     opacity:settings.value("background/active_opacitiy",0.0)
     states: [
         State {
