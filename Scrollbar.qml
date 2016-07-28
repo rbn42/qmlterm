@@ -3,7 +3,8 @@ import QMLTermWidget 1.0
 
 QMLTermScrollbar {
 
-    width: settings.value("scrollbar/width",1)
+    property var terminal_margin:settings.value("window/content_margin",1)-1
+    width: settings.value("scrollbar/width",1)-terminal_margin
 
     Rectangle {
         id:bar
