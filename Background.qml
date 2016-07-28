@@ -13,7 +13,7 @@ Rectangle{
         //var random_generator=settings.value("background/random_color_generator","function fun(a,b){return (Math.random()*(b-a)+a).toString(16).substr(2,2);};'#'+fun(0,0.25)+fun(0,0.5)+fun(0,0.5);");
 
         if(random_generator.length>0)
-            active_color=eval(random_generator);
+            active_color=deactive_color=eval(random_generator);
     }
 
     id:root
