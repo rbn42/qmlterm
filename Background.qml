@@ -3,26 +3,23 @@ import QtQuick 2.2
 Rectangle{
 
     property var config
-    property var random
-    property var random_colors
     property var active_color 
     property var deactive_color
 
     Component.onCompleted:{
         active_color=settings.value("background/active_color","black")
         deactive_color=settings.value("background/deactive_color","black")
-        var random=settings.value("background/random","false")=="true"
-        var random_colors=settings.value("background/random_colors","#004422,#002244,#220044,#440022,#224400,#442200") 
-        if(random){
-            random_colors=random_colors.split(',')
-            active_color=deactive_color=random_colors[Math.floor(Math.random()*random_colors.length)]
-        }
+        var random_generator=settings.value("background/random_color_generator","");
+        //var random_generator=settings.value("background/random_color_generator","function fun(a,b){return (Math.random()*(b-a)+a).toString(16).substr(2,2);};'#'+fun(0,0.25)+fun(0,0.5)+fun(0,0.5);");
+
+        if(random_generator.length>0)
+            active_color=eval(random_generator);
     }
 
     id:root
 
     anchors.fill: parent
-    color:active_color 
+    //color:active_color 
     opacity:settings.value("background/active_opacitiy",0.0)
     states: [
         State {
