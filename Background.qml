@@ -10,7 +10,7 @@ Rectangle{
         active_color=settings.value("background/active_color","black")
         deactive_color=settings.value("background/deactive_color","black")
         var random_generator=settings.value("background/random_color_generator","");
-        //var random_generator=settings.value("background/random_color_generator","function fun(a,b){return (Math.random()*(b-a)+a).toString(16).substr(2,2);};'#'+fun(0,0.25)+fun(0,0.5)+fun(0,0.5);");
+        //("background/random_color_generator","function fun(a,b){return (Math.random()*(b-a)+a).toString(16).substr(2,2);};'#'+fun(0,0.25)+fun(0,0.5)+fun(0,0.5);");
 
         if(random_generator.length>0)
             active_color=deactive_color=eval(random_generator);

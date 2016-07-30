@@ -17,6 +17,8 @@ ApplicationWindow {
     width: config.width
     height: config.height
     title:mainsession.title
+    x: settings.value("window/x",null)
+    y: settings.value("window/y",null)
     color: 'transparent'
 
     Configuration {id:config}

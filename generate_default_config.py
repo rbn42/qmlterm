@@ -18,6 +18,7 @@ for path in qmlfiles:
 alue = lambda a, b: (a, b)
 true = "true"
 false = "false"
+null = "null"
 settings = [eval(s) for s in settings]
 settings.sort()
 
