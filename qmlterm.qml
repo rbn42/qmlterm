@@ -35,6 +35,8 @@ ApplicationWindow {
         scrollbar:scrollbar
     }
 
+    visibility:settings.value('window/state','AutomaticVisibility')
+
     onActiveChanged:state.changestate(active,root.visibility)
 
     onVisibilityChanged:state.changestate(active,visibility)
