@@ -14,5 +14,6 @@
         <file>QuitingDialog.qml</file>
         <file>Scrollbar.qml</file>
         <file>utils.js</file>
+        <file>icon.png</file>
     </qresource>
 </RCC>
