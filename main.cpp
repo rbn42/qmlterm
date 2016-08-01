@@ -3,6 +3,7 @@
 #include <QCommandLineParser>
 #include <QDir>
 #include <QGuiApplication>
+#include <QIcon>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QSettings>
@@ -32,6 +33,8 @@ int main(int argc, char* argv[])
 
     QApplication app(argc, argv);
     QQmlApplicationEngine engine;
+    app.setWindowIcon(QIcon("qrc:/icon.png"));
+
     parser.process(app);
 
     Settings settings(parser.value("c"), QSettings::IniFormat);
