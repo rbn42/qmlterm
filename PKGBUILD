@@ -10,6 +10,7 @@ provides=("$_pkgname")
 conflicts=("$_pkgname")
 depends=("qt5-base" "qt5-declarative" "qt5-quickcontrols" "qt5-graphicaleffects")
 makedepends=()
+conflicts=('qmltermwidget')
 source=("git+https://github.com/rbn42/$_pkgname.git")
 sha256sums=("SKIP")
 
