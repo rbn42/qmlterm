@@ -39,6 +39,8 @@ Menu {
         }
     }
 
+    MenuSeparator { }
+
     MenuItem {
         text: qsTr('&Copy')
         shortcut: settings.value("shortcut/copy","Ctrl+Shift+C")
@@ -67,6 +69,8 @@ Menu {
         }
     }
 
+    MenuSeparator { }
+
     MenuItem {
         text: qsTr("Zoom &In")
         shortcut: settings.value("shortcut/zoomin","Ctrl++")
@@ -80,6 +84,8 @@ Menu {
 
         onTriggered: root.resize(1.0/1.1);
     }
+
+    MenuSeparator { }
 
     MenuItem {
         text: qsTr("&Maximize")
@@ -99,6 +105,8 @@ Menu {
 
         onTriggered: root.toggleFullscreen();
     }
+
+    MenuSeparator { }
 
     MenuItem {
         text: qsTr("&Quit")
