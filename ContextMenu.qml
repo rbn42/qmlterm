@@ -9,6 +9,7 @@ Menu {
     property var session
     property var root
     property var terminal
+    property var background
 
     Launcher { id: launcher }
 
@@ -84,6 +85,21 @@ Menu {
 
         onTriggered: root.resize(1.0/1.1);
     }
+
+    MenuItem {
+        text: qsTr("Increase Opacity")
+        shortcut: settings.value("shortcut/inc_opacity","Ctrl+PgUp")
+
+        onTriggered: background.increase_opacity();
+    }
+
+    MenuItem {
+        text: qsTr("Decrease Opacity")
+        shortcut: settings.value("shortcut/dec_opacity","Ctrl+PgDown")
+
+        onTriggered: background.decrease_opacity();
+    }
+
 
     MenuSeparator { }
 

@@ -5,6 +5,8 @@ Rectangle{
     property var config
     property var active_color 
     property var deactive_color
+    property var active_opacity:settings.value("background/active_opacitiy",0.0)
+    property var deactive_opacity:settings.value("background/deactive_opacitiy",0.0)
 
     Component.onCompleted:{
         active_color=settings.value("background/active_color","black")
@@ -19,14 +21,31 @@ Rectangle{
     id:root
 
     anchors.fill: parent
-    opacity:settings.value("background/active_opacitiy",0.0)
+
+    opacity:active_opacity
+
+    function change_opacity(value){
+        value=value<0?0:value>1?1:value;
+        root.opacity=value;
+        active_opacity=value;
+        deactive_opacity=value;
+    }
+
+    function increase_opacity(){
+        change_opacity(active_opacity+0.05);
+    }
+
+    function decrease_opacity(){
+        change_opacity(active_opacity-0.05);
+    }
+
     states: [
         State {
             name: "ACTIVATED"
             PropertyChanges {
                 target:root
                 color:active_color
-                opacity:settings.value("background/active_opacitiy",0.0)
+                opacity:active_opacity
             }
         },
         State {
@@ -34,7 +53,7 @@ Rectangle{
             PropertyChanges {
                 target:root
                 color:deactive_color
-                opacity:settings.value("background/deactive_opacitiy",0.0)
+                opacity:deactive_opacity
             }
         }
     ]
