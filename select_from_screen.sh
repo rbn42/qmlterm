@@ -2,7 +2,7 @@
 
 TEMP_FILE="/tmp/visual selection mode -- qmlterm"
 
-rm $TEMP_FILE
+rm "$TEMP_FILE"
 
 CMD1='normal!pG"add'
 #configuration
@@ -31,6 +31,6 @@ vim \"$TEMP_FILE\"  \
 """
 
 #load temp file to clipboard
-cat $TEMP_FILE | xsel -i
-cat $TEMP_FILE | xsel -i -b
-rm $TEMP_FILE
+cat "$TEMP_FILE" | xsel -i
+cat "$TEMP_FILE" | xsel -i -b
+rm "$TEMP_FILE"
