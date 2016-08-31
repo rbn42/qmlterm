@@ -51,7 +51,7 @@ ApplicationWindow {
 
     function resize(ratio){
         Utils.resize(ratio,config,root)
-        terminal.font.pointSize=Math.round(config.font_size*config.scale);
+        fakewindow.terminal_fontsize=Math.round(config.font_size*config.scale);
         terminalshadow.resize()
     }
 
@@ -91,19 +91,63 @@ ApplicationWindow {
         DragArea{root:root}
     }
 
+    function switchT(){
+        var cmd="bash "+Utils.findFile('select_from_screen.sh',path_terminal)
+        stsession.shellProgramArgs=['-c',cmd]
+        stsession.startShellProgram();
+        st.visible=true
+        terminalshadow.source=st
+        terminal.visible=false
+        st.forceActiveFocus();
+    }
+
+    QMLTermSession{
+        id:stsession
+        shellProgram:"fish"
+        onFinished:{
+            console.log("ssstitle changed");
+            terminal.visible=true
+            terminalshadow.source=terminal
+            st.visible=false
+            terminal.forceActiveFocus();
+        }
+    }
+
     Item{
         id:fakewindow
         anchors.fill: parent
         visible:true
+        property var terminal_font:settings.value("font/family","ubuntu mono, monospace")
+        property var terminal_fontsize:config.font_size
 
         Terminal{
             id: terminal
-            font.family:settings.value("font/family","ubuntu mono, monospace")
-            font.pointSize: config.font_size
+            font.family:fakewindow.terminal_font
+            font.pointSize:fakewindow.terminal_fontsize
             colorScheme:settings.value("session/color_scheme","Transparent")
             //colorScheme:'BlackOnWhite'
             session:mainsession
             Keys.onPressed:if(event.key==Qt.Key_Menu)contextMenu.popup()
+        }
+
+        QMLTermWidget {
+            property var terminal_margin:settings.value("window/content_margin",1)-1
+            id:st
+            font.family:fakewindow.terminal_font
+            font.pointSize:fakewindow.terminal_fontsize
+            colorScheme:settings.value("session/color_scheme","Transparent")
+            //colorScheme:'BlackOnWhite'
+            session:stsession
+            Keys.onPressed:if(event.key==Qt.Key_Menu)contextMenu.popup()
+            anchors.fill: parent
+            enableBold:true
+            blinkingCursor:true
+            antialiasText:true
+            visible:false
+            anchors.leftMargin:terminal_margin
+            anchors.rightMargin:terminal_margin
+            anchors.bottomMargin:terminal_margin
+            anchors.topMargin:terminal_margin
         }
 
         TerminalShadow {

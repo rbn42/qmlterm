@@ -10,6 +10,7 @@ Menu {
     property var root
     property var terminal
     property var background
+    property var fakewindow
 
     Launcher { id: launcher }
 
@@ -63,10 +64,11 @@ Menu {
         onTriggered:{
             //Copy the screen to clipboard
             terminal.copyScreenClipboard();
+            switchT();
 
-            launcher.launch('bash',[
-                Utils.findFile('select_from_screen.sh',path_terminal),
-            ]);
+           // launcher.launch('bash',[
+           //     Utils.findFile('select_from_screen.sh',path_terminal),
+           // ]);
         }
     }
 
