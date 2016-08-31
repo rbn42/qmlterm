@@ -1,19 +1,33 @@
 #!/bin/bash
 
-export TEMP_FILE="/tmp/edit_clip_temp_file"
+TEMP_FILE="/tmp/visual selection mode -- qmlterm"
 
 rm $TEMP_FILE
 
-#load clipboard
-export CMD1="normal!p"
+CMD1='normal!pG"add'
+#configuration
+CMD1='set nocompatible'
+CMD2='set clipboard=unnamedplus'
+#navigation
+CMDN1='normal!ggGHkkL'
 #save selection to temp file and quit
-export CMD2='map q "aygggg"bdG"ap:wq<CR>'
+CMDQ='map q "aygggg"bdG"ap:wq<CR>'
+
+#load clipboard
+xsel -o -b > "$TEMP_FILE"
 
 #replace `bash ~/bin/term_tiny` with your terminal. 
 bash ~/bin/term_tiny -e """
-vim $TEMP_FILE  \
+vim \"$TEMP_FILE\"  \
+    -u NONE \
     -c '$CMD1' \
-    -c '$CMD2'  
+    -c '$CMD2' \
+    -c '$CMD3' \
+    -c '$CMD4' \
+    -c '$CMD5' \
+    -c '$CMD6' \
+    -c '$CMDN1' \
+    -c '$CMDQ'  
 """
 
 #load temp file to clipboard
