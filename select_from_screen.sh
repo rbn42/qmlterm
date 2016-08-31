@@ -9,7 +9,7 @@ CMD1='normal!pG"add'
 CMD1='set nocompatible'
 CMD2='set clipboard=unnamedplus'
 #navigation
-CMDN1='normal!ggGHkkL'
+CMDN1='normal!ggGHkL'
 #save selection to temp file and quit
 CMDQ='map q "aygggg"bdG"ap:wq<CR>'
 
