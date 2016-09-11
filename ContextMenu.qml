@@ -10,6 +10,7 @@ Menu {
     property var root
     property var terminal
     property var background
+    property var faketitle
 
     Launcher { id: launcher }
 
@@ -120,6 +121,13 @@ Menu {
         shortcut: settings.value("shortcut/fullscreen","")
 
         onTriggered: root.toggleFullscreen();
+    }
+
+    MenuSeparator { }
+
+    MenuItem {
+        text: qsTr("Toggle Title")
+        onTriggered:faketitle.enable=!faketitle.enable
     }
 
     MenuSeparator { }

@@ -47,6 +47,7 @@ ApplicationWindow {
         root:root
         terminal:terminal
         background:background
+        faketitle:faketitle
     }
 
     function resize(ratio){
