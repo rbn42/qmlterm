@@ -1,4 +1,4 @@
-A terminal simulator with font shadow based on [[//github.com/Swordfish90/qmltermwidget][qmltermwidget]]. I did some dirty hack, because qmltermwidget does not support transparency background currently.
+A terminal simulator with font shadow based on [[//github.com/Swordfish90/qmltermwidget][qmltermwidget]]. 
 
 * Dependencies
 ** Ubuntu
