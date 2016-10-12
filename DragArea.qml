@@ -1,3 +1,8 @@
+/*
+ * TODO
+ * http://doc.qt.io/qt-5/qtwidgets-widgets-shapedclock-example.html
+ */
+
 import QtQuick 2.2
 
 
