@@ -5,9 +5,9 @@ Item{
 
     property var config
 
-    property var active_color:settings.value("border/active_color","#8ff")
+    property var active_color:(function(s){return "string"==typeof s?s:s[Math.floor(Math.random()*s.length)];})(settings.value("border/active_color","#8ff"))
     property var deactive_color:settings.value("border/deactive_color","#555")
-    property var shadow_active_color:settings.value("border/shadow_active_color","#8ff")
+    property var shadow_active_color:(function(s){return s;})(settings.value("border/shadow_active_color","#8ff"))
     property var shadow_deactive_color:settings.value("border/shadow_deactive_color","#555")
     property var border_width:settings.value("border/width",1)
 
