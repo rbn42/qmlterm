@@ -34,6 +34,7 @@ Item{
         samples: 17
         source:text
 
+        radius:settings.value("title/shadow_radius_active",10)
         visible:enable && ("true"==settings.value("title/shadow","true"))
         spread:settings.value("title/shadow_spread",0.6)
     }
@@ -45,7 +46,7 @@ Item{
             PropertyChanges {target:text;color:fontcolor;}
             PropertyChanges { 
                 target:shadow;
-                radius:settings.value("title/shadow_radius_active",10)
+                //radius:settings.value("title/shadow_radius_active",10)
                 color: settings.value("title/shadow_color_active",'white')
             }
             PropertyChanges {target:fakewindow.anchors;topMargin:title_size;}
@@ -56,7 +57,7 @@ Item{
             PropertyChanges {target:text;color:fontcolor;}
             PropertyChanges { 
                 target:shadow;
-                radius:settings.value("title/shadow_radius_deactive",3)
+                //radius:settings.value("title/shadow_radius_deactive",3)
                 color: settings.value("title/shadow_color_deactive",'white')
             
             }

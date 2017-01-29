@@ -27,6 +27,7 @@ Item{
         id:shadow
         anchors.fill: border
        // radius: 5
+        radius:settings.value("border/active_shadow",5);
         samples: 17
         color: "black"
         source: border
@@ -46,7 +47,7 @@ Item{
             }
             PropertyChanges { 
                 target: shadow;
-                radius:settings.value("border/active_shadow",5);
+                //radius:settings.value("border/active_shadow",5);
                 color:shadow_active_color
             }
         },
@@ -60,7 +61,7 @@ Item{
             }
             PropertyChanges { 
                 target: shadow;
-                radius:settings.value("border/deactive_shadow",1);
+                //radius:settings.value("border/deactive_shadow",1);
                 color:shadow_deactive_color
             }
         },
