@@ -22,6 +22,7 @@ DropShadow {
         horizontalOffset=Math.round(config.shadow_offset*scale)
         verticalOffset=Math.round(config.shadow_offset*scale)
 
+        //qt升级后这里可能crash
         radius=Math.round(config.shadow_radius*scale)
     }
 }
