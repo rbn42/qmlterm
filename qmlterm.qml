@@ -48,6 +48,7 @@ ApplicationWindow {
         terminal:terminal
         background:background
         faketitle:faketitle
+        fakeborder:fakeborder
     }
 
     function resize(ratio){

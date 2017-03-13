@@ -11,6 +11,7 @@ Menu {
     property var terminal
     property var background
     property var faketitle
+    property var fakeborder
 
     Launcher { id: launcher }
 
@@ -129,6 +130,12 @@ Menu {
         text: qsTr("Toggle Title")
         onTriggered:faketitle.enable=!faketitle.enable
     }
+
+    MenuItem {
+        text: qsTr("Toggle Border")
+        onTriggered:fakeborder.enable=!fakeborder.enable
+    }
+
 
     MenuSeparator { }
 

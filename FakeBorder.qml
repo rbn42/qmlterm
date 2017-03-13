@@ -5,6 +5,7 @@ Item{
 
     property var config
 
+    property var enable:"true"==settings.value("border/enable","true")
     property var active_color:(function(s){return "string"==typeof s?s:s[Math.floor(Math.random()*s.length)];})(settings.value("border/active_color","#8ff"))
     property var deactive_color:settings.value("border/deactive_color","#555")
     property var shadow_active_color:(function(s){return s;})(settings.value("border/shadow_active_color","#8ff"))
@@ -20,7 +21,7 @@ Item{
         id:border
         anchors.fill: parent
         color:'transparent'
-        visible:"true"==settings.value("border/enable","true")
+        visible:enable
     }
 
     DropShadow {
@@ -32,7 +33,7 @@ Item{
         color: "black"
         source: border
 
-        visible:"true"==settings.value("border/shadow","false")
+        visible:enable && "true"==settings.value("border/shadow","false")
         spread:settings.value("border/shadow_spread",0.6)
     }
 
