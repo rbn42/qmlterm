@@ -132,7 +132,7 @@ Menu {
     }
 
     MenuItem {
-        text: qsTr("Toggle Border")
+        text: qsTr("Toggle &Border")
         onTriggered:fakeborder.enable=!fakeborder.enable
     }
 
