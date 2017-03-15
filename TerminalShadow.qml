@@ -13,7 +13,7 @@ DropShadow {
     spread:parseFloat(settings.value("font/shadow_spread",0.4))
     visible:"true"==settings.value("font/shadow","true")
 
-    function resize(){
+    function _resize(){
         var scale=config.scale
         scale=scale/1.2
         scale=Math.sqrt(scale)
@@ -25,5 +25,18 @@ DropShadow {
         //qt升级后这里可能crash
         radius=Math.round(config.shadow_radius*scale)
     }
+
+    function resize(){
+        timer_resize.start();
+    }
+    //用timer延迟resize效果,避免crash
+    //因为新版本qt在shadow resize过快的情况下会崩溃,所以加个timer缓冲
+    //timer在运行中重复start是无效的,所以会减少resize的次数
+    Timer {
+        id:timer_resize
+        interval: 5000; running: false; repeat: false
+        onTriggered: _resize()
+    }
+
 }
 
