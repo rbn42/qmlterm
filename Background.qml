@@ -26,17 +26,16 @@ Rectangle{
 
     function change_opacity(value){
         value=value<0?0:value>1?1:value;
-        root.opacity=value;
         active_opacity=value;
         deactive_opacity=value;
     }
 
     function increase_opacity(){
-        change_opacity(active_opacity+0.05);
+        change_opacity(root.opacity+0.05);
     }
 
     function decrease_opacity(){
-        change_opacity(active_opacity-0.05);
+        change_opacity(root.opacity-0.05);
     }
 
     states: [
