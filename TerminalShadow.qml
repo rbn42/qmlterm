@@ -13,6 +13,8 @@ DropShadow {
     spread:parseFloat(settings.value("font/shadow_spread",0.4))
     visible:"true"==settings.value("font/shadow","true")
 
+    property var delay:false
+
     function _resize(){
         var scale=config.scale
         scale=scale/1.2
@@ -27,7 +29,12 @@ DropShadow {
     }
 
     function resize(){
-        timer_resize.start();
+        if(delay){
+            timer_resize.start();
+        }else{
+            delay=true;
+            _resize();
+        }
     }
     //用timer延迟resize效果,避免crash
     //因为新版本qt在shadow resize过快的情况下会崩溃,所以加个timer缓冲
