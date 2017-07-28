@@ -54,7 +54,6 @@ ApplicationWindow {
     function resize(ratio){
         Utils.resize(ratio,config,root)
         terminal.font.pointSize=Math.round(config.font_size*config.scale);
-        terminalshadow.resize()
     }
 
     function toggleMaximize(){
@@ -109,7 +108,6 @@ ApplicationWindow {
         }
 
         TerminalShadow {
-            id:terminalshadow
             config:config
             anchors.fill: terminal
             source: terminal
