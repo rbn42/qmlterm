@@ -16,6 +16,15 @@ CMDQ='map q "aygggg"bdG"ap:wq<CR>'
 #load clipboard
 xsel -o -b > "$TEMP_FILE"
 
+#TODO
+#clean up
+python -c """
+import sys
+lines=[line.strip()+'\\n' for line in open(sys.argv[1]) if len(line.strip())>0]
+with open(sys.argv[1],'w') as f:
+    f.writelines(lines)
+""" "$TEMP_FILE"
+
 #replace `bash ~/bin/term_tiny` with your terminal. 
 bash ~/bin/term_tiny -e """
 vim \"$TEMP_FILE\"  \
