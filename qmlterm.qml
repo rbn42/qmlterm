@@ -99,7 +99,7 @@ ApplicationWindow {
 
         Terminal{
             id: terminal
-            font.family:settings.value("font/family","ubuntu mono, monospace")
+            font.family:settings.value("font/family","monospace")
             font.pointSize: config.font_size
             colorScheme:settings.value("session/color_scheme","Transparent")
             //colorScheme:'BlackOnWhite'

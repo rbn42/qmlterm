@@ -24,7 +24,7 @@ Item{
 
         visible:enable
         font.pixelSize:title_size 
-        font.family:settings.value("title/font","ubuntu mono,monospace")
+        font.family:settings.value("title/font","monospace")
     }
 
     DropShadow {
