@@ -30,7 +30,7 @@ Menu {
 
     MenuItem {
         id:filemanager
-        text: qsTr('Open File Manger')
+        text: qsTr('Open &File Manger')
         shortcut: settings.value("shortcut/filemanager","")
         visible:"true"==settings.value("menu/filemanager","true")
 
@@ -118,7 +118,7 @@ Menu {
     }
 
     MenuItem {
-        text: qsTr('&Full Screen')
+        text: qsTr('Full Screen')
         shortcut: settings.value("shortcut/fullscreen","")
 
         onTriggered: root.toggleFullscreen();
