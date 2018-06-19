@@ -14,6 +14,7 @@ QMLTermWidget {
     onTerminalSizeChanged: console.log(terminalSize);
     enableBold:true
     blinkingCursor:true
+    allowDrawLineChar:"true"==settings.value("font/draw_char_line","true")
     antialiasText:true
 
     Component.onCompleted:{
