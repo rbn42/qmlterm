@@ -53,7 +53,15 @@ ApplicationWindow {
 
     function resize(ratio){
         Utils.resize(ratio,config,root)
-        terminal.font.pointSize=Math.round(config.font_size*config.scale);
+        var default_size=config.font_size;
+        if (default_size.endsWith('pt')){
+            var s=parseInt(default_size.replace('pt',''))
+            terminal.font.pointSize=Math.round(s*config.scale);
+        }else if(default_size.endsWith('px')){
+            var s=parseInt(default_size.replace('px',''))
+            terminal.font.pixelSize=Math.round(s*config.scale);
+        }
+
     }
 
     function toggleMaximize(){
@@ -100,7 +108,6 @@ ApplicationWindow {
         Terminal{
             id: terminal
             font.family:settings.value("font/family","monospace")
-            font.pointSize: config.font_size
             colorScheme:settings.value("session/color_scheme","Transparent")
             //colorScheme:'BlackOnWhite'
             session:mainsession
