@@ -15,6 +15,7 @@ QMLTermWidget {
     enableBold:true
     blinkingCursor:true
     allowDrawLineChar:"true"==settings.value("font/draw_char_line","true")
+    lineOffset: settings.value("font/line_offset",0)
     antialiasText:true
     lineSpacing:0
     //fullCursorHeight:true     
